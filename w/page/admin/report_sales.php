@@ -143,8 +143,23 @@
                 <?php
                 include "../inc/koneksi.php";
                 //untuk menantukan tanggal awal dan tanggal akhir data di database
-                $min_tanggal = mysqli_fetch_array(mysqli_query($koneksi, "SELECT MIN(tgl_penjualan) AS min_tanggal FROM tabel_penjualan"));
-                $max_tanggal = mysqli_fetch_array(mysqli_query($koneksi, "SELECT MAX(tgl_penjualan) AS max_tanggal FROM tabel_penjualan"));
+
+                    $min_tanggal_query = "SELECT MIN(tgl_penjualan) AS min_tanggal FROM tabel_penjualan";
+                    $max_tanggal_query = "SELECT MAX(tgl_penjualan) AS max_tanggal FROM tabel_penjualan";
+
+                    $min_tanggal_result = mysqli_fetch_assoc(mysqli_query($koneksi, $min_tanggal_query));
+                    $max_tanggal_result = mysqli_fetch_assoc(mysqli_query($koneksi, $max_tanggal_query));
+
+                    // Ambil nilai tanggal dari hasil query
+                    $min_tanggal = $min_tanggal_result['min_tanggal'];
+                    $max_tanggal = $max_tanggal_result['max_tanggal'];
+
+                    // Ubah format tanggal ke 'j F Y'
+                    $min_date = DateTime::createFromFormat('Y-m-d H:i:s', $min_tanggal);
+                    $max_date = DateTime::createFromFormat('Y-m-d H:i:s', $max_tanggal);
+
+                    $formatted_min_date = $min_date->format('j F, Y');
+                    $formatted_max_date = $max_date->format('j F, Y');
                 ?>  
                 <!-- Column selectors with Export Options and print table -->
                 <section id="column-selectors">
@@ -163,7 +178,7 @@
                                                         <div class="divider-text"><h5 class="mb-3 font-medium-1 text-uppercase">Tanggal Awal</h5></div>
                                                     </div>
                                                     <div class="input-group">
-                                                        <input type='text' name="tanggal_awal" class="form-control pickadate" value="<?php echo $min_tanggal['min_tanggal']; ?>" />
+                                                        <input type='text' name="tanggal_awal" class="form-control pickadate" value="<?php echo $formatted_min_date ?>" />
                                                         <div class="input-group-append" id="button-addon2">
                                                            <button class="btn btn-primary rounded-0" type="button"><i class="far fa-calendar-minus"></i></button>
                                                         </div>
@@ -172,7 +187,7 @@
                                                         <div class="divider-text"><h5 class="mb-3 font-medium-1 text-uppercase">Tanggal Akhir</h5></div>
                                                     </div>
                                                     <div class="input-group">
-                                                        <input type='text' name="tanggal_akhir" class="form-control pickadate" value="<?php echo $max_tanggal['max_tanggal']; ?>" />
+                                                        <input type='text' name="tanggal_akhir" class="form-control pickadate" value="<?php echo $formatted_max_date ?>" />
                                                         <div class="input-group-append" id="button-addon2">
                                                            <button class="btn btn-primary rounded-0" type="button"><i class="far fa-calendar-plus"></i></button>
                                                         </div>
@@ -183,20 +198,36 @@
                                             <div class="col-lg-9 col-12 mb-1">
                                                     <?php
                                                     if (isset($_POST['cari'])) {
-                                                    $tanggal_awal = $_POST['tanggal_awal'];
-                                                    $tanggal_akhir = $_POST['tanggal_akhir'];
+                                                        $tanggal_awal1 = $_POST['tanggal_awal'];
+                                                        $tanggal_akhir1 = $_POST['tanggal_akhir'];
+                                                        if($tanggal_awal1 !== null && $tanggal_akhir1){   
+                                                        $tanggal_awal2 = DateTime::createFromFormat('j F, Y', $tanggal_awal1);
+                                                        $tanggal_akhir2 = DateTime::createFromFormat('j F, Y', $tanggal_akhir1);
+                                                        if($tanggal_akhir1 && $tanggal_akhir2){
+                                                        $tanggal_awal = $tanggal_awal2->format('Y-m-d') . ' 00:00:00';
+                                                        $tanggal_akhir = $tanggal_akhir2->format('Y-m-d') . ' 00:00:00';
+                                                               }
+                                                         }
                                                     if (empty($tanggal_awal) and empty($tanggal_akhir)) {
                                                     //jika tidak menginput apa2
+                                                    ?>
+                                                    <span class="nama-user" style="color: #d16010;">
+                                                        <i><b>Data Penjualan : </b> Pencarian dari tanggal <b><?php echo $_POST['tanggal_awal'] ?></b> sampai dengan tanggal <b><?php echo $_POST['tanggal_akhir'] ?></b>
+                                                        </i>
+                                                        </span>
+                                                    <?php
                                                     $query = mysqli_query($koneksi, "SELECT * FROM tabel_penjualan ORDER BY tgl_penjualan DESC");
                                                     $jumlah = mysqli_fetch_array(mysqli_query($koneksi, "SELECT SUM(total_penjualan) AS total FROM tabel_penjualan ORDER BY tgl_penjualan DESC"));
                                                     } else {
                                                       ?>
-                                                    <span class="nama-user" style="color: #d16010;">
+                                                       <span class="nama-user" style="color: #d16010;">
                                                         <i><b>Data Penjualan : </b> Pencarian dari tanggal <b><?php echo $_POST['tanggal_awal'] ?></b> sampai dengan tanggal <b><?php echo $_POST['tanggal_akhir'] ?></b>
                                                         </i>
-                                                    </span>
-
-                                                	  <?php $query = mysqli_query($koneksi, "SELECT * FROM tabel_penjualan WHERE tgl_penjualan BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tgl_penjualan DESC");
+                                                        </span>
+                                                        
+                                                        <?php 
+                                                         
+                                                      $query = mysqli_query($koneksi, "SELECT * FROM tabel_penjualan WHERE tgl_penjualan BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tgl_penjualan DESC");
                                                             $jumlah = mysqli_fetch_array(mysqli_query($koneksi, "SELECT SUM(total_penjualan) AS total FROM tabel_penjualan WHERE tgl_penjualan BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tgl_penjualan DESC")); 
                                                     } ?>
 

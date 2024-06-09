@@ -110,8 +110,11 @@
     <script src="../app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js"></script>
     <script src="../app-assets/js/scripts/ui/data-list-view.js"></script>    
     <script src="../app-assets/vendors/js/forms/validation/jqBootstrapValidation.js"></script>
+    <!-- pikers -->
     <script src="../app-assets/vendors/js/pickers/pickadate/picker.js"></script>
     <script src="../app-assets/vendors/js/pickers/pickadate/picker.date.js"></script>    
+    <script src="../app-assets/js/scripts/pickers/dateTime/pick-a-datetime.js"></script>    
+    <!-- endpicker -->
     <script src="../app-assets/js/scripts/pages/app-user.js"></script>
     <script src="../app-assets/js/scripts/navs/navs.js"></script>    
     <script src="../app-assets/vendors/js/extensions/moment.min.js"></script>
