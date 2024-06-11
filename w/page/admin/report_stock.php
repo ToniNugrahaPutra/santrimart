@@ -1,117 +1,115 @@
 <style type="text/css">
-    
-    table.dataTable thead tr {
-        background-color: #337ab7;
-        color:#fff;
-        font-size: 11px;
-    }
+  table.dataTable thead tr {
+    background-color: #337ab7;
+    color: #fff;
+    font-size: 11px;
+  }
 
-    .modal-title {
-        margin-bottom: 0;
-        line-height: 1.45;
-        color: white;
-    }
+  .modal-title {
+    margin-bottom: 0;
+    line-height: 1.45;
+    color: white;
+  }
 
-    .modal .modal-header {
-        background-color: #49b5c3;
-        border-radius: 0.42rem;
-        padding: 0.8rem;
-        color: white;
-        border-bottom: none;
-    }
+  .modal .modal-header {
+    background-color: #49b5c3;
+    border-radius: 0.42rem;
+    padding: 0.8rem;
+    color: white;
+    border-bottom: none;
+  }
 
-    .header-tabel {
-        color:#fff;
-        font-size: 11px;
-        background-color: #337ab7;
-    }
+  .header-tabel {
+    color: #fff;
+    font-size: 11px;
+    background-color: #337ab7;
+  }
 
-    .pagination .page-item.active .page-link {
-        z-index: 3;
-        border-radius: 5rem;
-        background-color: #337ab7;
-        color: #FFFFFF;
-        -webkit-transform: scale(1.05);
-        -ms-transform: scale(1.05);
-        transform: scale(1.05); 
-    }
+  .pagination .page-item.active .page-link {
+    z-index: 3;
+    border-radius: 5rem;
+    background-color: #337ab7;
+    color: #FFFFFF;
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+  }
 
-    table.dataTable.table-striped tbody tr:nth-of-type(even) {
-        background-color: #e9fcfe;
-    }
+  table.dataTable.table-striped tbody tr:nth-of-type(even) {
+    background-color: #e9fcfe;
+  }
 
-    .nama-user{
-        font-size: 12px;
-        animation: blink-animation 1s steps(3, start) infinite;
-        -webkit-animation: blink-animation 1s steps(3, start) infinite;
-    }
+  .nama-user {
+    font-size: 12px;
+    animation: blink-animation 1s steps(3, start) infinite;
+    -webkit-animation: blink-animation 1s steps(3, start) infinite;
+  }
 
-    .text-user{
-        color: #df0a0a;
-        animation: blink-animation 1s steps(3, start) infinite;
-        -webkit-animation: blink-animation 1s steps(3, start) infinite;
-    }
+  .text-user {
+    color: #df0a0a;
+    animation: blink-animation 1s steps(3, start) infinite;
+    -webkit-animation: blink-animation 1s steps(3, start) infinite;
+  }
 
-    @keyframes blink-animation {
-        to {
-            visibility: hidden;
-        }
+  @keyframes blink-animation {
+    to {
+      visibility: hidden;
     }
+  }
 
-    @-webkit-keyframes blink-animation {
-        to {
-            visibility: hidden;
-        }
+  @-webkit-keyframes blink-animation {
+    to {
+      visibility: hidden;
     }
+  }
 
-    .badge.badge-up {
-        position: absolute;
-        top: 19.5rem;
-        right: -0.5rem;
-    }
+  .badge.badge-up {
+    position: absolute;
+    top: 19.5rem;
+    right: -0.5rem;
+  }
 
-    .badge.badge-up2 {
-        position: absolute;
-        top: -0.3rem;
-        right: -2.5rem;
-    }
+  .badge.badge-up2 {
+    position: absolute;
+    top: -0.3rem;
+    right: -2.5rem;
+  }
 
-    .nav.nav-tabs .nav-item .nav-link.active {
-        border: none;
-        position: relative;
-        color: #49b5c3 !important;
-        -webkit-transition: all 0.2s ease;
-        transition: all 0.2s ease;
-        background-color: transparent;
-    }
+  .nav.nav-tabs .nav-item .nav-link.active {
+    border: none;
+    position: relative;
+    color: #49b5c3 !important;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    background-color: transparent;
+  }
 
-    .nav.nav-tabs .nav-item .nav-link.active:after {
-        content: attr(data-before);
-        height: 2px;
-        width: 100%;
-        left: 0;
-        position: absolute;
-        bottom: 0;
-        top: 100%;
-        background: -webkit-linear-gradient(60deg, #28838f, rgb(55 232 252)) !important;
-        background: linear-gradient(30deg, #198593, rgb(73 181 195 / 55%)) !important;
-        box-shadow: 0 0 8px 0 rgb(73 181 195 / 49%) !important;
-        -webkit-transform: translateY(0px);
-        -ms-transform: translateY(0px);
-        transform: translateY(0px);
-        -webkit-transition: all 0.2s linear;
-        transition: all 0.2s linear;
-    }
+  .nav.nav-tabs .nav-item .nav-link.active:after {
+    content: attr(data-before);
+    height: 2px;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    bottom: 0;
+    top: 100%;
+    background: -webkit-linear-gradient(60deg, #28838f, rgb(55 232 252)) !important;
+    background: linear-gradient(30deg, #198593, rgb(73 181 195 / 55%)) !important;
+    box-shadow: 0 0 8px 0 rgb(73 181 195 / 49%) !important;
+    -webkit-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    transform: translateY(0px);
+    -webkit-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+  }
 
-    .horizontal-menu.navbar-floating:not(.blank-page) .app-content {
-      padding-top: -6.25rem;
-    }
+  .horizontal-menu.navbar-floating:not(.blank-page) .app-content {
+    padding-top: -6.25rem;
+  }
 
-    html body .content.app-content {
-      overflow: hidden;
-      margin-top: -130px;
-    }
-
+  html body .content.app-content {
+    overflow: hidden;
+    margin-top: -130px;
+  }
 </style>
 
 <!-- BEGIN: Content-->
@@ -123,7 +121,8 @@
       <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
           <div class="col-12">
-            <h2 class="content-header-title float-left mb-0 text-dark text-capitalize"><?php echo $_SESSION['akses']; ?></h2>
+            <h2 class="content-header-title float-left mb-0 text-dark text-capitalize"><?php echo $_SESSION['akses']; ?>
+            </h2>
             <div class="breadcrumb-wrapper col-12">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.php?menu=home" class="text-dark">Home</a>
@@ -142,8 +141,23 @@
         <?php
         include "../inc/koneksi.php";
         //untuk menantukan tanggal awal dan tanggal akhir data di database
-        $min_tanggal = mysqli_fetch_array(mysqli_query($koneksi, "SELECT MIN(tgl_penjualan) AS min_tanggal FROM tabel_penjualan"));
-        $max_tanggal = mysqli_fetch_array(mysqli_query($koneksi, "SELECT MAX(tgl_penjualan) AS max_tanggal FROM tabel_penjualan"));
+        
+        $min_tanggal_query = "SELECT MIN(tgl_penjualan) AS min_tanggal FROM tabel_penjualan";
+        $max_tanggal_query = "SELECT MAX(tgl_penjualan) AS max_tanggal FROM tabel_penjualan";
+
+        $min_tanggal_result = mysqli_fetch_assoc(mysqli_query($koneksi, $min_tanggal_query));
+        $max_tanggal_result = mysqli_fetch_assoc(mysqli_query($koneksi, $max_tanggal_query));
+
+        // Ambil nilai tanggal dari hasil query
+        $min_tanggal = $min_tanggal_result['min_tanggal'];
+        $max_tanggal = $max_tanggal_result['max_tanggal'];
+
+        // Ubah format tanggal ke 'j F Y'
+        $min_date = DateTime::createFromFormat('Y-m-d H:i:s', $min_tanggal);
+        $max_date = DateTime::createFromFormat('Y-m-d H:i:s', $max_tanggal);
+
+        $formatted_min_date = $min_date->format('j F, Y');
+        $formatted_max_date = $max_date->format('j F, Y');
         ?>
         <!-- Column selectors with Export Options and print table -->
         <section id="column-selectors">
@@ -166,9 +180,11 @@
                             </div>
                           </div>
                           <div class="input-group">
-                            <input type='text' name="tanggal_awal" class="form-control pickadate" value="<?php echo $min_tanggal['min_tanggal']; ?>" />
+                            <input type='text' name="tanggal_awal" class="form-control pickadate"
+                              value="<?php echo $formatted_min_date ?>" />
                             <div class="input-group-append" id="button-addon2">
-                              <button class="btn btn-primary rounded-0" type="button"><i class="far fa-calendar-minus"></i></button>
+                              <button class="btn btn-primary rounded-0" type="button"><i
+                                  class="far fa-calendar-minus"></i></button>
                             </div>
                           </div>
                           <div class="divider">
@@ -177,42 +193,61 @@
                             </div>
                           </div>
                           <div class="input-group">
-                            <input type='text' name="tanggal_akhir" class="form-control pickadate" value="<?php echo $max_tanggal['max_tanggal']; ?>" />
+                            <input type='text' name="tanggal_akhir" class="form-control pickadate"
+                              value="<?php echo $formatted_max_date ?>" />
                             <div class="input-group-append" id="button-addon2">
-                              <button class="btn btn-primary rounded-0" type="button"><i class="far fa-calendar-plus"></i></button>
+                              <button class="btn btn-primary rounded-0" type="button"><i
+                                  class="far fa-calendar-plus"></i></button>
                             </div>
                           </div>
-                          <button type="submit" name="cari" class="btn btn-block btn-info mt-2 text-white rounded-0">TAMPIL</button>
+                          <button type="submit" name="cari"
+                            class="btn btn-block btn-info mt-2 text-white rounded-0">TAMPIL</button>
                         </form>
                       </div>
                       <div class="col-lg-9 col-12 mb-1">
-                          <?php
-                          if (isset($_POST['cari'])) {
-                            $tanggal_awal = $_POST['tanggal_awal'];
-                            $tanggal_akhir = $_POST['tanggal_akhir'];
-                            $barang_keluar = 0;
-                            if (empty($tanggal_awal) and empty($tanggal_akhir)) {
-                              //jika tidak menginput apa2
-                              $query = mysqli_query($koneksi, "SELECT * FROM tabel_penjualan ORDER BY tgl_penjualan DESC");
-                              $jumlah = mysqli_fetch_array(mysqli_query($koneksi, "SELECT SUM(total_penjualan) AS total FROM tabel_penjualan ORDER BY tgl_penjualan DESC"));
-                            } else {
-                          ?>
+                        <?php
+                        if (isset($_POST['cari'])) {
+                          $tanggal_awal1 = $_POST['tanggal_awal'];
+                          $tanggal_akhir1 = $_POST['tanggal_akhir'];
+                          if ($tanggal_awal1 !== null && $tanggal_akhir1) {
+                            $tanggal_awal2 = DateTime::createFromFormat('j F, Y', $tanggal_awal1);
+                            $tanggal_akhir2 = DateTime::createFromFormat('j F, Y', $tanggal_akhir1);
+                            if ($tanggal_akhir1 && $tanggal_akhir2) {
+                              $tanggal_awal = $tanggal_awal2->format('Y-m-d') . ' 00:00:00';
+                              $tanggal_akhir = $tanggal_akhir2->format('Y-m-d') . ' 00:00:00';
+                            }
+                          }
+                          $barang_keluar = 0;
+                          if (empty($tanggal_awal) and empty($tanggal_akhir)) {
+                            //jika tidak menginput apa2
+                            ?>
                             <span class="nama-user" style="color: #d16010;">
-                              <i><b>Data Stok : </b> Pencarian dari tanggal <b><?php echo $_POST['tanggal_awal'] ?></b> sampai dengan tanggal <b><?php echo $_POST['tanggal_akhir'] ?></b></i>
+                              <i><b>Data Penjualan : </b> Pencarian dari tanggal <b><?php echo $_POST['tanggal_awal'] ?></b>
+                                sampai dengan tanggal <b><?php echo $_POST['tanggal_akhir'] ?></b>
+                              </i>
+                            </span>
+                            <?php
+                            $query = mysqli_query($koneksi, "SELECT * FROM tabel_penjualan ORDER BY tgl_penjualan DESC");
+                            $jumlah = mysqli_fetch_array(mysqli_query($koneksi, "SELECT SUM(total_penjualan) AS total FROM tabel_penjualan ORDER BY tgl_penjualan DESC"));
+                          } else {
+                            ?>
+                            <span class="nama-user" style="color: #d16010;">
+                              <i><b>Data Stok : </b> Pencarian dari tanggal <b><?php echo $_POST['tanggal_awal'] ?></b>
+                                sampai dengan tanggal <b><?php echo $_POST['tanggal_akhir'] ?></b></i>
                             </span>
 
                             <?php
 
-                              $query = mysqli_query($koneksi, "SELECT * FROM tabel_penjualan WHERE tgl_penjualan BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tgl_penjualan DESC");
-                              $jumlah = mysqli_fetch_array(mysqli_query($koneksi, "SELECT SUM(total_penjualan) AS total FROM tabel_penjualan WHERE tgl_penjualan BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tgl_penjualan DESC"));
-                            }
+                            $query = mysqli_query($koneksi, "SELECT * FROM tabel_penjualan WHERE tgl_penjualan BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tgl_penjualan DESC");
+                            $jumlah = mysqli_fetch_array(mysqli_query($koneksi, "SELECT SUM(total_penjualan) AS total FROM tabel_penjualan WHERE tgl_penjualan BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tgl_penjualan DESC"));
+                          }
 
-                            ?>
+                          ?>
 
                           <div class="badge badge-primary float-right">
                             Total Laba
                             <span class="font-small-3 nama-user">
-                                Rp. <?php echo number_format($jumlah['total'],0,',','.') ?>
+                              Rp. <?php echo number_format($jumlah['total'], 0, ',', '.') ?>
                             </span>
                           </div>
 
@@ -236,7 +271,7 @@
                               $no = 0;
                               //menampilkan data
                               while ($row = mysqli_fetch_array($query)) {
-                              ?>
+                                ?>
                                 <tbody>
                                   <tr>
                                     <td style="vertical-align: top;"><?php echo $no = $no + 1; ?></td>
@@ -250,9 +285,9 @@
                                       <?php
                                       $c = mysqli_query($koneksi, "SELECT * FROM tabel_barang, tabel_rinci_penjualan WHERE tabel_barang.kd_barang = tabel_rinci_penjualan.kd_barang AND tabel_rinci_penjualan.no_faktur_penjualan = '$row[no_faktur_penjualan]' ");
                                       while ($d = mysqli_fetch_array($c)) {
-                                        $jml     = $d['jumlah'];
+                                        $jml = $d['jumlah'];
                                         echo $d['nm_barang'];
-                                      ?>
+                                        ?>
                                         <hr />
                                       <?php } ?>
                                     </td>
@@ -269,9 +304,9 @@
                                       <?php
                                       $c = mysqli_query($koneksi, "SELECT * FROM tabel_barang, tabel_rinci_penjualan WHERE tabel_barang.kd_barang = tabel_rinci_penjualan.kd_barang AND tabel_rinci_penjualan.no_faktur_penjualan = '$row[no_faktur_penjualan]' ");
                                       while ($d = mysqli_fetch_array($c)) {
-                                        $jml     = $d['jumlah'];
+                                        $jml = $d['jumlah'];
                                         echo $jml;
-                                      ?>
+                                        ?>
                                         <hr />
                                       <?php } ?>
                                     </td>
@@ -279,9 +314,9 @@
                                       <?php
                                       $c = mysqli_query($koneksi, "SELECT * FROM tabel_barang, tabel_rinci_penjualan WHERE tabel_barang.kd_barang = tabel_rinci_penjualan.kd_barang AND tabel_rinci_penjualan.no_faktur_penjualan = '$row[no_faktur_penjualan]' ");
                                       while ($d = mysqli_fetch_array($c)) {
-                                        $jml     = $d['jumlah'];
+                                        $jml = $d['jumlah'];
                                         $barang_keluar += $jml;
-                                      ?>
+                                        ?>
                                         <?php echo $d['stok_awal'] - $jml; ?>
                                         <hr />
                                       <?php } ?>
@@ -293,33 +328,33 @@
                                     </td>
                                     <td style="vertical-align: top;"><?php echo $row['ket']; ?></td>
                                   </tr>
-                                <?php  } ?>
-                                </tbody>
-                                <tfoot>
-                                  <tr>
-                                    <th>TOTAL KELUAR</th>
-                                    <th>
-                                      <!--?php echo number_format($jumlah['total'],2,',','.');?-->
-                                      <?php echo $barang_keluar; ?>
-                                    </th>
-                                  </tr>
+                                <?php } ?>
+                              </tbody>
+                              <tfoot>
+                                <tr>
+                                  <th>TOTAL KELUAR</th>
+                                  <th>
+                                    <!--?php echo number_format($jumlah['total'],2,',','.');?-->
+                                    <?php echo $barang_keluar; ?>
+                                  </th>
+                                </tr>
 
-                                  <tr>
-                                    <td>
-                                      <?php
-                                      //jika data tidak ditemukan
-                                      if (mysqli_num_rows($query) == 0) {
-                                        echo "<font color=red><blink>Tidak ada data yang dicari!</blink></font>";
-                                      }
-                                      ?>
-                                    </td>
-                                  </tr>
-                                </tfoot>
+                                <tr>
+                                  <td>
+                                    <?php
+                                    //jika data tidak ditemukan
+                                    if (mysqli_num_rows($query) == 0) {
+                                      echo "<font color=red><blink>Tidak ada data yang dicari!</blink></font>";
+                                    }
+                                    ?>
+                                  </td>
+                                </tr>
+                              </tfoot>
                             </table>
-                        </div>
-                      <?php } else {
-                            unset($_POST['cari']);
-                          } ?>
+                          </div>
+                        <?php } else {
+                          unset($_POST['cari']);
+                        } ?>
                       </div>
                     </div>
                   </div>
