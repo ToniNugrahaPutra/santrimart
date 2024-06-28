@@ -26,7 +26,7 @@ use Google\Service\NetworkServices\TlsRoute;
  * Typical usage is:
  *  <code>
  *   $networkservicesService = new Google\Service\NetworkServices(...);
- *   $tlsRoutes = $networkservicesService->tlsRoutes;
+ *   $tlsRoutes = $networkservicesService->projects_locations_tlsRoutes;
  *  </code>
  */
 class ProjectsLocationsTlsRoutes extends \Google\Service\Resource
@@ -40,8 +40,9 @@ class ProjectsLocationsTlsRoutes extends \Google\Service\Resource
    * @param array $optParams Optional parameters.
    *
    * @opt_param string tlsRouteId Required. Short name of the TlsRoute resource to
-   * be created. E.g. TODO(Add an example).
+   * be created.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, TlsRoute $postBody, $optParams = [])
   {
@@ -56,6 +57,7 @@ class ProjectsLocationsTlsRoutes extends \Google\Service\Resource
    * the format `projects/locations/global/tlsRoutes`.
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -70,6 +72,7 @@ class ProjectsLocationsTlsRoutes extends \Google\Service\Resource
    * format `projects/locations/global/tlsRoutes`.
    * @param array $optParams Optional parameters.
    * @return TlsRoute
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -89,8 +92,10 @@ class ProjectsLocationsTlsRoutes extends \Google\Service\Resource
    * @opt_param int pageSize Maximum number of TlsRoutes to return per call.
    * @opt_param string pageToken The value returned by the last
    * `ListTlsRoutesResponse` Indicates that this is a continuation of a prior
-   * `ListRouters` call, and that the system should return the next page of data.
+   * `ListTlsRoutes` call, and that the system should return the next page of
+   * data.
    * @return ListTlsRoutesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsTlsRoutes($parent, $optParams = [])
   {
@@ -112,6 +117,7 @@ class ProjectsLocationsTlsRoutes extends \Google\Service\Resource
    * request. A field will be overwritten if it is in the mask. If the user does
    * not provide a mask then all fields will be overwritten.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, TlsRoute $postBody, $optParams = [])
   {

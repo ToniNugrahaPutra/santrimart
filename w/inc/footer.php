@@ -96,15 +96,18 @@
     <!-- <script src="../app-assets/js/scripts/forms/number-input.js"></script> -->
     <script src="../app-assets/js/scripts/pages/app-ecommerce-shop.js"></script>
     
+    <script src="../app-assets/vendors/js/tables/datatable/jszip.js"></script>
     <script src="../app-assets/vendors/js/tables/datatable/pdfmake.min.js"></script>
     <script src="../app-assets/vendors/js/tables/datatable/vfs_fonts.js"></script>
     <script src="../app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
+    <script src="../app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js"></script>
     <script src="../app-assets/vendors/js/tables/datatable/datatables.buttons.min.js"></script>
+    <script src="../app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js"></script>
     <script src="../app-assets/vendors/js/tables/datatable/buttons.html5.min.js"></script>
     <script src="../app-assets/vendors/js/tables/datatable/buttons.print.min.js"></script>
-    <script src="../app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js"></script>
-    <script src="../app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js"></script>
     <script src="../app-assets/js/scripts/datatables/datatable.js"></script> 
+    
+
     <script src="../app-assets/vendors/js/extensions/dropzone.min.js"></script>    
     <script src="../app-assets/vendors/js/tables/datatable/dataTables.select.min.js"></script>
     <script src="../app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js"></script>

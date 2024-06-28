@@ -23,7 +23,9 @@ use Google\Client;
  * Service definition for AndroidPublisher (v3).
  *
  * <p>
- * Lets Android application developers access their Google Play accounts.</p>
+ * Lets Android application developers access their Google Play accounts. At a
+ * high level, the expected workflow is to "insert" an Edit, make changes as
+ * necessary, and then "commit" it.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -38,7 +40,9 @@ class AndroidPublisher extends \Google\Service
   const ANDROIDPUBLISHER =
       "https://www.googleapis.com/auth/androidpublisher";
 
+  public $applications;
   public $applications_deviceTierConfigs;
+  public $apprecovery;
   public $edits;
   public $edits_apks;
   public $edits_bundles;
@@ -50,6 +54,7 @@ class AndroidPublisher extends \Google\Service
   public $edits_listings;
   public $edits_testers;
   public $edits_tracks;
+  public $externaltransactions;
   public $generatedapks;
   public $grants;
   public $inappproducts;
@@ -66,6 +71,7 @@ class AndroidPublisher extends \Google\Service
   public $reviews;
   public $systemapks_variants;
   public $users;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the AndroidPublisher service.
@@ -78,11 +84,32 @@ class AndroidPublisher extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://androidpublisher.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://androidpublisher.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v3';
     $this->serviceName = 'androidpublisher';
 
+    $this->applications = new AndroidPublisher\Resource\Applications(
+        $this,
+        $this->serviceName,
+        'applications',
+        [
+          'methods' => [
+            'dataSafety' => [
+              'path' => 'androidpublisher/v3/applications/{packageName}/dataSafety',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'packageName' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
     $this->applications_deviceTierConfigs = new AndroidPublisher\Resource\ApplicationsDeviceTierConfigs(
         $this,
         $this->serviceName,
@@ -134,6 +161,85 @@ class AndroidPublisher extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->apprecovery = new AndroidPublisher\Resource\Apprecovery(
+        $this,
+        $this->serviceName,
+        'apprecovery',
+        [
+          'methods' => [
+            'addTargeting' => [
+              'path' => 'androidpublisher/v3/applications/{packageName}/appRecoveries/{appRecoveryId}:addTargeting',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'packageName' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'appRecoveryId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'appRecoveries' => [
+              'path' => 'androidpublisher/v3/applications/{packageName}/appRecoveries',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'packageName' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'versionCode' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'cancel' => [
+              'path' => 'androidpublisher/v3/applications/{packageName}/appRecoveries/{appRecoveryId}:cancel',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'packageName' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'appRecoveryId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'create' => [
+              'path' => 'androidpublisher/v3/applications/{packageName}/appRecoveries',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'packageName' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'deploy' => [
+              'path' => 'androidpublisher/v3/applications/{packageName}/appRecoveries/{appRecoveryId}:deploy',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'packageName' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'appRecoveryId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
                 ],
               ],
             ],
@@ -317,6 +423,10 @@ class AndroidPublisher extends \Google\Service
                 'ackBundleInstallationWarning' => [
                   'location' => 'query',
                   'type' => 'boolean',
+                ],
+                'deviceTierConfigId' => [
+                  'location' => 'query',
+                  'type' => 'string',
                 ],
               ],
             ],
@@ -864,7 +974,22 @@ class AndroidPublisher extends \Google\Service
         'tracks',
         [
           'methods' => [
-            'get' => [
+            'create' => [
+              'path' => 'androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'packageName' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'editId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
               'path' => 'androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks/{track}',
               'httpMethod' => 'GET',
               'parameters' => [
@@ -934,6 +1059,50 @@ class AndroidPublisher extends \Google\Service
                   'required' => true,
                 ],
                 'track' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->externaltransactions = new AndroidPublisher\Resource\Externaltransactions(
+        $this,
+        $this->serviceName,
+        'externaltransactions',
+        [
+          'methods' => [
+            'createexternaltransaction' => [
+              'path' => 'androidpublisher/v3/{+parent}/externalTransactions',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'externalTransactionId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'getexternaltransaction' => [
+              'path' => 'androidpublisher/v3/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'refundexternaltransaction' => [
+              'path' => 'androidpublisher/v3/{+name}:refund',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -1038,7 +1207,42 @@ class AndroidPublisher extends \Google\Service
         'inappproducts',
         [
           'methods' => [
-            'delete' => [
+            'batchDelete' => [
+              'path' => 'androidpublisher/v3/applications/{packageName}/inappproducts:batchDelete',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'packageName' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'batchGet' => [
+              'path' => 'androidpublisher/v3/applications/{packageName}/inappproducts:batchGet',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'packageName' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'sku' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ],
+              ],
+            ],'batchUpdate' => [
+              'path' => 'androidpublisher/v3/applications/{packageName}/inappproducts:batchUpdate',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'packageName' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'delete' => [
               'path' => 'androidpublisher/v3/applications/{packageName}/inappproducts/{sku}',
               'httpMethod' => 'DELETE',
               'parameters' => [
@@ -1051,6 +1255,10 @@ class AndroidPublisher extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'latencyTolerance' => [
+                  'location' => 'query',
+                  'type' => 'string',
                 ],
               ],
             ],'get' => [
@@ -1122,6 +1330,10 @@ class AndroidPublisher extends \Google\Service
                   'location' => 'query',
                   'type' => 'boolean',
                 ],
+                'latencyTolerance' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
               ],
             ],'update' => [
               'path' => 'androidpublisher/v3/applications/{packageName}/inappproducts/{sku}',
@@ -1144,6 +1356,10 @@ class AndroidPublisher extends \Google\Service
                 'autoConvertMissingPrices' => [
                   'location' => 'query',
                   'type' => 'boolean',
+                ],
+                'latencyTolerance' => [
+                  'location' => 'query',
+                  'type' => 'string',
                 ],
               ],
             ],
@@ -1216,6 +1432,31 @@ class AndroidPublisher extends \Google\Service
                   'required' => true,
                 ],
                 'productId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'batchGet' => [
+              'path' => 'androidpublisher/v3/applications/{packageName}/subscriptions:batchGet',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'packageName' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'productIds' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ],
+              ],
+            ],'batchUpdate' => [
+              'path' => 'androidpublisher/v3/applications/{packageName}/subscriptions:batchUpdate',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'packageName' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -1305,6 +1546,14 @@ class AndroidPublisher extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
+                'allowMissing' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
+                'latencyTolerance' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
                 'regionsVersion.version' => [
                   'location' => 'query',
                   'type' => 'string',
@@ -1339,6 +1588,36 @@ class AndroidPublisher extends \Google\Service
                   'required' => true,
                 ],
                 'basePlanId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'batchMigratePrices' => [
+              'path' => 'androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans:batchMigratePrices',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'packageName' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'productId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'batchUpdateStates' => [
+              'path' => 'androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans:batchUpdateStates',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'packageName' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'productId' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -1434,6 +1713,66 @@ class AndroidPublisher extends \Google\Service
                   'required' => true,
                 ],
                 'offerId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'batchGet' => [
+              'path' => 'androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchGet',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'packageName' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'productId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'basePlanId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'batchUpdate' => [
+              'path' => 'androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchUpdate',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'packageName' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'productId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'basePlanId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'batchUpdateStates' => [
+              'path' => 'androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchUpdateStates',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'packageName' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'productId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'basePlanId' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -1594,6 +1933,14 @@ class AndroidPublisher extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
+                'allowMissing' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
+                'latencyTolerance' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
                 'regionsVersion.version' => [
                   'location' => 'query',
                   'type' => 'string',
@@ -1644,6 +1991,26 @@ class AndroidPublisher extends \Google\Service
           'methods' => [
             'acknowledge' => [
               'path' => 'androidpublisher/v3/applications/{packageName}/purchases/products/{productId}/tokens/{token}:acknowledge',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'packageName' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'productId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'token' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'consume' => [
+              'path' => 'androidpublisher/v3/applications/{packageName}/purchases/products/{productId}/tokens/{token}:consume',
               'httpMethod' => 'POST',
               'parameters' => [
                 'packageName' => [
@@ -1837,6 +2204,21 @@ class AndroidPublisher extends \Google\Service
                   'required' => true,
                 ],
               ],
+            ],'revoke' => [
+              'path' => 'androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}:revoke',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'packageName' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'token' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],
           ]
         ]
@@ -1859,6 +2241,10 @@ class AndroidPublisher extends \Google\Service
                 'endTime' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+                'includeQuantityBasedPartialRefund' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
                 'maxResults' => [
                   'location' => 'query',

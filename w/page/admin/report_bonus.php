@@ -202,7 +202,8 @@
                                                 <br>                     
                                             
                                                 <div class="table-responsive">
-                                                    <table class="table table-striped dataex-html5-selectors">
+                                                <table class="table table-striped dataex-html5-selectors"  id="example-table">
+                                                <button id="export-button" class="btn btn-secondary">Excel</button>
                                                         <thead>
                                                             <tr>
                                                                 <th width="5%">No</th>
@@ -277,3 +278,31 @@
        <!-- END: Content-->
     </div>
 </div> 
+
+<script>
+        $(document).ready(function() {
+    $("#export-button").click(function() {
+        // Mendapatkan tanggal saat ini
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        var filename = 'bonus_' + yyyy + '-' + mm + '-' + dd + '.xlsx'; // Nama file dengan format 'example_tahun-bulan-tanggal.xlsx'
+
+        var wb = XLSX.utils.table_to_book(document.getElementById('example-table'), {sheet: "Sheet JS"});
+        var wbout = XLSX.write(wb, {bookType: 'xlsx', type: 'binary'});
+
+        function s2ab(s) {
+            var buf = new ArrayBuffer(s.length);
+            var view = new Uint8Array(buf);
+            for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+            return buf;
+        }
+
+        saveAs(new Blob([s2ab(wbout)], {type: "application/octet-stream"}), filename);
+    });
+});
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>

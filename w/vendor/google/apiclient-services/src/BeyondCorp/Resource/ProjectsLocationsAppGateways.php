@@ -17,21 +17,102 @@
 
 namespace Google\Service\BeyondCorp\Resource;
 
+use Google\Service\BeyondCorp\AppGateway;
 use Google\Service\BeyondCorp\GoogleIamV1Policy;
 use Google\Service\BeyondCorp\GoogleIamV1SetIamPolicyRequest;
 use Google\Service\BeyondCorp\GoogleIamV1TestIamPermissionsRequest;
 use Google\Service\BeyondCorp\GoogleIamV1TestIamPermissionsResponse;
+use Google\Service\BeyondCorp\GoogleLongrunningOperation;
+use Google\Service\BeyondCorp\ListAppGatewaysResponse;
 
 /**
  * The "appGateways" collection of methods.
  * Typical usage is:
  *  <code>
  *   $beyondcorpService = new Google\Service\BeyondCorp(...);
- *   $appGateways = $beyondcorpService->appGateways;
+ *   $appGateways = $beyondcorpService->projects_locations_appGateways;
  *  </code>
  */
 class ProjectsLocationsAppGateways extends \Google\Service\Resource
 {
+  /**
+   * Creates a new AppGateway in a given project and location.
+   * (appGateways.create)
+   *
+   * @param string $parent Required. The resource project name of the AppGateway
+   * location using the form: `projects/{project_id}/locations/{location_id}`
+   * @param AppGateway $postBody
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string appGatewayId Optional. User-settable AppGateway resource
+   * ID. * Must start with a letter. * Must contain between 4-63 characters from
+   * `/a-z-/`. * Must end with a number or a letter.
+   * @opt_param string requestId Optional. An optional request ID to identify
+   * requests. Specify a unique request ID so that if you must retry your request,
+   * the server will know to ignore the request if it has already been completed.
+   * The server will guarantee that for at least 60 minutes since the first
+   * request. For example, consider a situation where you make an initial request
+   * and the request times out. If you make the request again with the same
+   * request ID, the server can check if original operation with the same request
+   * ID was received, and if so, will ignore the second request. This prevents
+   * clients from accidentally creating duplicate commitments. The request ID must
+   * be a valid UUID with the exception that zero UUID is not supported
+   * (00000000-0000-0000-0000-000000000000).
+   * @opt_param bool validateOnly Optional. If set, validates request by executing
+   * a dry-run which would not alter the resource in any way.
+   * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
+   */
+  public function create($parent, AppGateway $postBody, $optParams = [])
+  {
+    $params = ['parent' => $parent, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('create', [$params], GoogleLongrunningOperation::class);
+  }
+  /**
+   * Deletes a single AppGateway. (appGateways.delete)
+   *
+   * @param string $name Required. BeyondCorp AppGateway name using the form:
+   * `projects/{project_id}/locations/{location_id}/appGateways/{app_gateway_id}`
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId Optional. An optional request ID to identify
+   * requests. Specify a unique request ID so that if you must retry your request,
+   * the server will know to ignore the request if it has already been completed.
+   * The server will guarantee that for at least 60 minutes after the first
+   * request. For example, consider a situation where you make an initial request
+   * and the request times out. If you make the request again with the same
+   * request ID, the server can check if original operation with the same request
+   * ID was received, and if so, will ignore the second request. This prevents
+   * clients from accidentally creating duplicate commitments. The request ID must
+   * be a valid UUID with the exception that zero UUID is not supported
+   * (00000000-0000-0000-0000-000000000000).
+   * @opt_param bool validateOnly Optional. If set, validates request by executing
+   * a dry-run which would not alter the resource in any way.
+   * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
+   */
+  public function delete($name, $optParams = [])
+  {
+    $params = ['name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('delete', [$params], GoogleLongrunningOperation::class);
+  }
+  /**
+   * Gets details of a single AppGateway. (appGateways.get)
+   *
+   * @param string $name Required. BeyondCorp AppGateway name using the form:
+   * `projects/{project_id}/locations/{location_id}/appGateways/{app_gateway_id}`
+   * @param array $optParams Optional parameters.
+   * @return AppGateway
+   * @throws \Google\Service\Exception
+   */
+  public function get($name, $optParams = [])
+  {
+    $params = ['name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('get', [$params], AppGateway::class);
+  }
   /**
    * Gets the access control policy for a resource. Returns an empty policy if the
    * resource exists and does not have a policy set. (appGateways.getIamPolicy)
@@ -55,12 +136,43 @@ class ProjectsLocationsAppGateways extends \Google\Service\Resource
    * documentation](https://cloud.google.com/iam/help/conditions/resource-
    * policies).
    * @return GoogleIamV1Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, $optParams = [])
   {
     $params = ['resource' => $resource];
     $params = array_merge($params, $optParams);
     return $this->call('getIamPolicy', [$params], GoogleIamV1Policy::class);
+  }
+  /**
+   * Lists AppGateways in a given project and location.
+   * (appGateways.listProjectsLocationsAppGateways)
+   *
+   * @param string $parent Required. The resource name of the AppGateway location
+   * using the form: `projects/{project_id}/locations/{location_id}`
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string filter Optional. A filter specifying constraints of a list
+   * operation.
+   * @opt_param string orderBy Optional. Specifies the ordering of results. See
+   * [Sorting
+   * order](https://cloud.google.com/apis/design/design_patterns#sorting_order)
+   * for more information.
+   * @opt_param int pageSize Optional. The maximum number of items to return. If
+   * not specified, a default value of 50 will be used by the service. Regardless
+   * of the page_size value, the response may include a partial list and a caller
+   * should only rely on response's next_page_token to determine if there are more
+   * instances left to be queried.
+   * @opt_param string pageToken Optional. The next_page_token value returned from
+   * a previous ListAppGatewaysRequest, if any.
+   * @return ListAppGatewaysResponse
+   * @throws \Google\Service\Exception
+   */
+  public function listProjectsLocationsAppGateways($parent, $optParams = [])
+  {
+    $params = ['parent' => $parent];
+    $params = array_merge($params, $optParams);
+    return $this->call('list', [$params], ListAppGatewaysResponse::class);
   }
   /**
    * Sets the access control policy on the specified resource. Replaces any
@@ -74,6 +186,7 @@ class ProjectsLocationsAppGateways extends \Google\Service\Resource
    * @param GoogleIamV1SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleIamV1Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, GoogleIamV1SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -96,6 +209,7 @@ class ProjectsLocationsAppGateways extends \Google\Service\Resource
    * @param GoogleIamV1TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleIamV1TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, GoogleIamV1TestIamPermissionsRequest $postBody, $optParams = [])
   {

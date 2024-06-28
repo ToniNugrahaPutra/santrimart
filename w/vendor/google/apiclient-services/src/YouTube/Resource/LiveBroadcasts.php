@@ -69,6 +69,7 @@ class LiveBroadcasts extends \Google\Service\Resource
    * channel.
    * @opt_param string streamId Stream to bind, if not set unbind the current one.
    * @return LiveBroadcast
+   * @throws \Google\Service\Exception
    */
   public function bind($id, $part, $optParams = [])
   {
@@ -108,6 +109,7 @@ class LiveBroadcasts extends \Google\Service\Resource
    * perform actions on behalf of the channel specified in the parameter value,
    * without having to provide authentication credentials for each separate
    * channel.
+   * @throws \Google\Service\Exception
    */
   public function delete($id, $optParams = [])
   {
@@ -153,6 +155,7 @@ class LiveBroadcasts extends \Google\Service\Resource
    * without having to provide authentication credentials for each separate
    * channel.
    * @return LiveBroadcast
+   * @throws \Google\Service\Exception
    */
   public function insert($part, LiveBroadcast $postBody, $optParams = [])
   {
@@ -163,6 +166,7 @@ class LiveBroadcasts extends \Google\Service\Resource
   /**
    * Insert cuepoints in a broadcast (liveBroadcasts.insertCuepoint)
    *
+   * @param Cuepoint $postBody
    * @param array $optParams Optional parameters.
    *
    * @opt_param string id Broadcast to insert ads to, or equivalently
@@ -197,20 +201,12 @@ class LiveBroadcasts extends \Google\Service\Resource
    * of one or more liveBroadcast resource properties that the API response will
    * include. The part names that you can include in the parameter value are id,
    * snippet, contentDetails, and status.
-   * @opt_param string resource.cueType
-   * @opt_param string resource.durationSecs The duration of this cuepoint.
-   * @opt_param string resource.etag
-   * @opt_param string resource.id The identifier for cuepoint resource.
-   * @opt_param string resource.insertionOffsetTimeMs The time when the cuepoint
-   * should be inserted by offset to the broadcast actual start time.
-   * @opt_param string resource.walltimeMs The wall clock time at which the
-   * cuepoint should be inserted. Only one of insertion_offset_time_ms and
-   * walltime_ms may be set at a time.
    * @return Cuepoint
+   * @throws \Google\Service\Exception
    */
-  public function insertCuepoint($optParams = [])
+  public function insertCuepoint(Cuepoint $postBody, $optParams = [])
   {
-    $params = [];
+    $params = ['postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('insertCuepoint', [$params], Cuepoint::class);
   }
@@ -264,6 +260,7 @@ class LiveBroadcasts extends \Google\Service\Resource
    * nextPageToken and prevPageToken properties identify other pages that could be
    * retrieved.
    * @return LiveBroadcastListResponse
+   * @throws \Google\Service\Exception
    */
   public function listLiveBroadcasts($part, $optParams = [])
   {
@@ -310,6 +307,7 @@ class LiveBroadcasts extends \Google\Service\Resource
    * without having to provide authentication credentials for each separate
    * channel.
    * @return LiveBroadcast
+   * @throws \Google\Service\Exception
    */
   public function transition($broadcastStatus, $id, $part, $optParams = [])
   {
@@ -364,6 +362,7 @@ class LiveBroadcasts extends \Google\Service\Resource
    * without having to provide authentication credentials for each separate
    * channel.
    * @return LiveBroadcast
+   * @throws \Google\Service\Exception
    */
   public function update($part, LiveBroadcast $postBody, $optParams = [])
   {

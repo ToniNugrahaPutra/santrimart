@@ -22,11 +22,19 @@ class FirebaseAppInfo extends \Google\Model
   /**
    * @var string
    */
+  public $apiKeyId;
+  /**
+   * @var string
+   */
   public $appId;
   /**
    * @var string
    */
   public $displayName;
+  /**
+   * @var string
+   */
+  public $expireTime;
   /**
    * @var string
    */
@@ -44,6 +52,20 @@ class FirebaseAppInfo extends \Google\Model
    */
   public $state;
 
+  /**
+   * @param string
+   */
+  public function setApiKeyId($apiKeyId)
+  {
+    $this->apiKeyId = $apiKeyId;
+  }
+  /**
+   * @return string
+   */
+  public function getApiKeyId()
+  {
+    return $this->apiKeyId;
+  }
   /**
    * @param string
    */
@@ -71,6 +93,20 @@ class FirebaseAppInfo extends \Google\Model
   public function getDisplayName()
   {
     return $this->displayName;
+  }
+  /**
+   * @param string
+   */
+  public function setExpireTime($expireTime)
+  {
+    $this->expireTime = $expireTime;
+  }
+  /**
+   * @return string
+   */
+  public function getExpireTime()
+  {
+    return $this->expireTime;
   }
   /**
    * @param string

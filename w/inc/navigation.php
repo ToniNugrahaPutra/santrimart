@@ -1,4 +1,5 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
     <?php $a = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_toko LIMIT 1"));
         // var_dump($a['logo_login']); die();
     ?>

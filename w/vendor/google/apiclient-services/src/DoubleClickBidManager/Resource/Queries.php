@@ -38,6 +38,7 @@ class Queries extends \Google\Service\Resource
    * @param Query $postBody
    * @param array $optParams Optional parameters.
    * @return Query
+   * @throws \Google\Service\Exception
    */
   public function create(Query $postBody, $optParams = [])
   {
@@ -46,11 +47,11 @@ class Queries extends \Google\Service\Resource
     return $this->call('create', [$params], Query::class);
   }
   /**
-   * Deletes a stored query as well as the associated stored reports.
-   * (queries.delete)
+   * Deletes a query as well as the associated reports. (queries.delete)
    *
-   * @param string $queryId Required. Query ID to delete.
+   * @param string $queryId Required. ID of query to delete.
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function delete($queryId, $optParams = [])
   {
@@ -59,11 +60,12 @@ class Queries extends \Google\Service\Resource
     return $this->call('delete', [$params]);
   }
   /**
-   * Retrieves a stored query. (queries.get)
+   * Retrieves a query. (queries.get)
    *
-   * @param string $queryId Required. Query ID to retrieve.
+   * @param string $queryId Required. ID of query to retrieve.
    * @param array $optParams Optional parameters.
    * @return Query
+   * @throws \Google\Service\Exception
    */
   public function get($queryId, $optParams = [])
   {
@@ -72,19 +74,20 @@ class Queries extends \Google\Service\Resource
     return $this->call('get', [$params], Query::class);
   }
   /**
-   * Retrieves stored queries. (queries.listQueries)
+   * Lists queries created by the current user. (queries.listQueries)
    *
    * @param array $optParams Optional parameters.
    *
    * @opt_param string orderBy Name of a field used to order results. The default
    * sorting order is ascending. To specify descending order for a field, append a
    * " desc" suffix. For example "metadata.title desc". Sorting is only supported
-   * for the following fields: * queryId * metadata.title
+   * for the following fields: * `queryId` * `metadata.title`
    * @opt_param int pageSize Maximum number of results per page. Must be between
    * `1` and `100`. Defaults to `100` if unspecified.
    * @opt_param string pageToken A page token, received from a previous list call.
    * Provide this to retrieve the subsequent page of queries.
    * @return ListQueriesResponse
+   * @throws \Google\Service\Exception
    */
   public function listQueries($optParams = [])
   {
@@ -95,7 +98,7 @@ class Queries extends \Google\Service\Resource
   /**
    * Runs a stored query to generate a report. (queries.run)
    *
-   * @param string $queryId Required. Query ID to run.
+   * @param string $queryId Required. ID of query to run.
    * @param RunQueryRequest $postBody
    * @param array $optParams Optional parameters.
    *
@@ -103,6 +106,7 @@ class Queries extends \Google\Service\Resource
    * When true, this method will not return until the query has finished running.
    * When false or not specified, this method will return immediately.
    * @return Report
+   * @throws \Google\Service\Exception
    */
   public function run($queryId, RunQueryRequest $postBody, $optParams = [])
   {

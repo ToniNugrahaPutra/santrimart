@@ -49,6 +49,10 @@ class ArtifactRegistry extends \Google\Service
   public $projects_locations_repositories_aptArtifacts;
   public $projects_locations_repositories_dockerImages;
   public $projects_locations_repositories_files;
+  public $projects_locations_repositories_genericArtifacts;
+  public $projects_locations_repositories_goModules;
+  public $projects_locations_repositories_googetArtifacts;
+  public $projects_locations_repositories_kfpArtifacts;
   public $projects_locations_repositories_mavenArtifacts;
   public $projects_locations_repositories_npmPackages;
   public $projects_locations_repositories_packages;
@@ -56,6 +60,7 @@ class ArtifactRegistry extends \Google\Service
   public $projects_locations_repositories_packages_versions;
   public $projects_locations_repositories_pythonPackages;
   public $projects_locations_repositories_yumArtifacts;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the ArtifactRegistry service.
@@ -68,6 +73,7 @@ class ArtifactRegistry extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://artifactregistry.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://artifactregistry.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -123,6 +129,16 @@ class ArtifactRegistry extends \Google\Service
                   'required' => true,
                 ],
               ],
+            ],'getVpcscConfig' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'list' => [
               'path' => 'v1/{+name}/locations',
               'httpMethod' => 'GET',
@@ -141,6 +157,20 @@ class ArtifactRegistry extends \Google\Service
                   'type' => 'integer',
                 ],
                 'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'updateVpcscConfig' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'updateMask' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],
@@ -334,6 +364,10 @@ class ArtifactRegistry extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
+                'orderBy' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
                 'pageSize' => [
                   'location' => 'query',
                   'type' => 'integer',
@@ -353,7 +387,27 @@ class ArtifactRegistry extends \Google\Service
         'files',
         [
           'methods' => [
-            'get' => [
+            'delete' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'download' => [
+              'path' => 'v1/{+name}:download',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
               'path' => 'v1/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
@@ -387,6 +441,96 @@ class ArtifactRegistry extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_locations_repositories_genericArtifacts = new ArtifactRegistry\Resource\ProjectsLocationsRepositoriesGenericArtifacts(
+        $this,
+        $this->serviceName,
+        'genericArtifacts',
+        [
+          'methods' => [
+            'upload' => [
+              'path' => 'v1/{+parent}/genericArtifacts:create',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_locations_repositories_goModules = new ArtifactRegistry\Resource\ProjectsLocationsRepositoriesGoModules(
+        $this,
+        $this->serviceName,
+        'goModules',
+        [
+          'methods' => [
+            'upload' => [
+              'path' => 'v1/{+parent}/goModules:create',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_locations_repositories_googetArtifacts = new ArtifactRegistry\Resource\ProjectsLocationsRepositoriesGoogetArtifacts(
+        $this,
+        $this->serviceName,
+        'googetArtifacts',
+        [
+          'methods' => [
+            'import' => [
+              'path' => 'v1/{+parent}/googetArtifacts:import',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'upload' => [
+              'path' => 'v1/{+parent}/googetArtifacts:create',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_locations_repositories_kfpArtifacts = new ArtifactRegistry\Resource\ProjectsLocationsRepositoriesKfpArtifacts(
+        $this,
+        $this->serviceName,
+        'kfpArtifacts',
+        [
+          'methods' => [
+            'upload' => [
+              'path' => 'v1/{+parent}/kfpArtifacts:create',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
                 ],
               ],
             ],
@@ -513,6 +657,20 @@ class ArtifactRegistry extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'patch' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'updateMask' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
             ],
           ]
         ]
@@ -603,7 +761,17 @@ class ArtifactRegistry extends \Google\Service
         'versions',
         [
           'methods' => [
-            'delete' => [
+            'batchDelete' => [
+              'path' => 'v1/{+parent}/versions:batchDelete',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'delete' => [
               'path' => 'v1/{+name}',
               'httpMethod' => 'DELETE',
               'parameters' => [

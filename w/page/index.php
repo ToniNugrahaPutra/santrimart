@@ -404,6 +404,8 @@ if ($_SESSION['akses'] == 'adminx') {
               include ('admin/list_report_member.php');
               break;
 
+       
+
             // ============================ INVENTORY =============================
       
             case ('inventory');

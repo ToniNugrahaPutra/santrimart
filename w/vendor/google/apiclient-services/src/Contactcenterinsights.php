@@ -47,6 +47,7 @@ class Contactcenterinsights extends \Google\Service
   public $projects_locations_operations;
   public $projects_locations_phraseMatchers;
   public $projects_locations_views;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Contactcenterinsights
@@ -60,6 +61,7 @@ class Contactcenterinsights extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://contactcenterinsights.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://contactcenterinsights.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -105,7 +107,27 @@ class Contactcenterinsights extends \Google\Service
         'conversations',
         [
           'methods' => [
-            'calculateStats' => [
+            'bulkAnalyze' => [
+              'path' => 'v1/{+parent}/conversations:bulkAnalyze',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'bulkDelete' => [
+              'path' => 'v1/{+parent}/conversations:bulkDelete',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'calculateStats' => [
               'path' => 'v1/{+location}/conversations:calculateStats',
               'httpMethod' => 'GET',
               'parameters' => [
@@ -161,6 +183,16 @@ class Contactcenterinsights extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'ingest' => [
+              'path' => 'v1/{+parent}/conversations:ingest',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'list' => [
               'path' => 'v1/{+parent}/conversations',
               'httpMethod' => 'GET',
@@ -171,6 +203,10 @@ class Contactcenterinsights extends \Google\Service
                   'required' => true,
                 ],
                 'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'orderBy' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],
@@ -199,6 +235,16 @@ class Contactcenterinsights extends \Google\Service
                 'updateMask' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+              ],
+            ],'upload' => [
+              'path' => 'v1/{+parent}/conversations:upload',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
                 ],
               ],
             ],
@@ -333,11 +379,31 @@ class Contactcenterinsights extends \Google\Service
                   'required' => true,
                 ],
               ],
+            ],'export' => [
+              'path' => 'v1/{+name}:export',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'get' => [
               'path' => 'v1/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'import' => [
+              'path' => 'v1/{+parent}/issueModels:import',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -387,7 +453,17 @@ class Contactcenterinsights extends \Google\Service
         'issues',
         [
           'methods' => [
-            'get' => [
+            'delete' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
               'path' => 'v1/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [

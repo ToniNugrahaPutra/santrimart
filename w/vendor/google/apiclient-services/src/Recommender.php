@@ -38,7 +38,9 @@ class Recommender extends \Google\Service
   const CLOUD_PLATFORM =
       "https://www.googleapis.com/auth/cloud-platform";
 
+  public $billingAccounts_locations_insightTypes;
   public $billingAccounts_locations_insightTypes_insights;
+  public $billingAccounts_locations_recommenders;
   public $billingAccounts_locations_recommenders_recommendations;
   public $folders_locations_insightTypes_insights;
   public $folders_locations_recommenders_recommendations;
@@ -50,6 +52,7 @@ class Recommender extends \Google\Service
   public $projects_locations_insightTypes_insights;
   public $projects_locations_recommenders;
   public $projects_locations_recommenders_recommendations;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Recommender service.
@@ -62,11 +65,50 @@ class Recommender extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://recommender.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://recommender.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
     $this->serviceName = 'recommender';
 
+    $this->billingAccounts_locations_insightTypes = new Recommender\Resource\BillingAccountsLocationsInsightTypes(
+        $this,
+        $this->serviceName,
+        'insightTypes',
+        [
+          'methods' => [
+            'getConfig' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'updateConfig' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'updateMask' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'validateOnly' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
     $this->billingAccounts_locations_insightTypes_insights = new Recommender\Resource\BillingAccountsLocationsInsightTypesInsights(
         $this,
         $this->serviceName,
@@ -119,6 +161,44 @@ class Recommender extends \Google\Service
           ]
         ]
     );
+    $this->billingAccounts_locations_recommenders = new Recommender\Resource\BillingAccountsLocationsRecommenders(
+        $this,
+        $this->serviceName,
+        'recommenders',
+        [
+          'methods' => [
+            'getConfig' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'updateConfig' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'updateMask' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'validateOnly' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
     $this->billingAccounts_locations_recommenders_recommendations = new Recommender\Resource\BillingAccountsLocationsRecommendersRecommendations(
         $this,
         $this->serviceName,
@@ -159,6 +239,16 @@ class Recommender extends \Google\Service
               ],
             ],'markClaimed' => [
               'path' => 'v1/{+name}:markClaimed',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'markDismissed' => [
+              'path' => 'v1/{+name}:markDismissed',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
@@ -283,6 +373,16 @@ class Recommender extends \Google\Service
               ],
             ],'markClaimed' => [
               'path' => 'v1/{+name}:markClaimed',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'markDismissed' => [
+              'path' => 'v1/{+name}:markDismissed',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
@@ -491,6 +591,16 @@ class Recommender extends \Google\Service
                   'required' => true,
                 ],
               ],
+            ],'markDismissed' => [
+              'path' => 'v1/{+name}:markDismissed',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'markFailed' => [
               'path' => 'v1/{+name}:markFailed',
               'httpMethod' => 'POST',
@@ -683,6 +793,16 @@ class Recommender extends \Google\Service
               ],
             ],'markClaimed' => [
               'path' => 'v1/{+name}:markClaimed',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'markDismissed' => [
+              'path' => 'v1/{+name}:markDismissed',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
