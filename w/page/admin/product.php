@@ -1,12 +1,11 @@
 <head>
-<script src="https://cdn.jsdelivr.net/npm/quagga@0.12.1/dist/quagga.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quagga@0.12.1/dist/quagga.min.js"></script>
 </head>
 
 <style type="text/css">
-
   table.dataTable thead tr {
     background-color: #337ab7;
-    color:#fff;
+    color: #fff;
     font-size: 11px;
   }
 
@@ -25,7 +24,7 @@
   }
 
   .header-tabel {
-    color:#fff;
+    color: #fff;
     font-size: 11px;
     background-color: #337ab7;
   }
@@ -37,18 +36,17 @@
     color: #FFFFFF;
     -webkit-transform: scale(1.05);
     -ms-transform: scale(1.05);
-    transform: scale(1.05); 
+    transform: scale(1.05);
   }
 
   .horizontal-menu.navbar-floating:not(.blank-page) .app-content {
-      padding-top: -6.25rem;
+    padding-top: -6.25rem;
   }
 
   html body .content.app-content {
     overflow: hidden;
     margin-top: -130px;
   }
-
 </style>
 
 <!-- BEGIN: Content-->
@@ -60,7 +58,8 @@
       <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
           <div class="col-12">
-            <h2 class="content-header-title float-left mb-0 text-dark text-capitalize"><?php echo $_SESSION['akses']; ?></h2>
+            <h2 class="content-header-title float-left mb-0 text-dark text-capitalize"><?php echo $_SESSION['akses']; ?>
+            </h2>
             <div class="breadcrumb-wrapper col-12">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.php?menu=home" class="text-dark">Home</a>
@@ -83,9 +82,7 @@
         </div>
         <div class="row">
           <div class="col-lg-5 col-12 pb-5">
-
             <form method="post" action="../aksi/add_product.php" enctype="multipart/form-data">
-
               <div class="row">
                 <!-- <div class="col-12 col-md-12 text-right">
             <button class="btn btn-primary" style="border-radius: 20%;" type="button" onclick="location.reload()">Refresh</button>
@@ -94,7 +91,8 @@
                   <div class="font-small-2">Gunakan Barcode/ Masukkan kode barang manual</div>
                   <fieldset>
                     <div class="input-group">
-                      <input type="text" name="kode" class="form-control" autofocus="autofocus" placeholder="Scan Here!">
+                      <input type="text" name="kode" class="form-control" autofocus="autofocus"
+                        placeholder="Scan Here!">
                       <div class="input-group-append" id="button-addon2">
                         <button class="btn btn-primary rounded-0" type="button"><i class="fas fa-qrcode"></i></button>
                       </div>
@@ -102,70 +100,68 @@
                   </fieldset>
                 </div>
                 <script>
-    function startBarcodeScanner() {
-        Quagga.init({
-            inputStream: {
-                name: "Live",
-                type: "LiveStream",
-                target: document.querySelector('#kodebarang'),
-                constraints: {
-                    width: 480,
-                    height: 320,
-                    facingMode: "environment"
-                },
-            },
-            decoder: {
-                readers: ["ean_reader", "upc_reader", "code128_reader", "code39_reader", "codabar_reader"]
-            }
-        }, function (err) {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            Quagga.start();
-        });
+                  function startBarcodeScanner() {
+                    Quagga.init({
+                      inputStream: {
+                        name: "Live",
+                        type: "LiveStream",
+                        target: document.querySelector('#kodebarang'),
+                        constraints: {
+                          width: 480,
+                          height: 320,
+                          facingMode: "environment"
+                        },
+                      },
+                      decoder: {
+                        readers: ["ean_reader", "upc_reader", "code128_reader", "code39_reader", "codabar_reader"]
+                      }
+                    }, function (err) {
+                      if (err) {
+                        console.error(err);
+                        return;
+                      }
+                      Quagga.start();
+                    });
 
-        Quagga.onDetected(function (result) {
-            document.getElementById('kodebarang').value = result.codeResult.code;
-            Quagga.stop();
-        });
-    }
-    </script>
+                    Quagga.onDetected(function (result) {
+                      document.getElementById('kodebarang').value = result.codeResult.code;
+                      Quagga.stop();
+                    });
+                  }
+                </script>
                 <div class="col-12 col-md-12 mt-2 mb-1">
-                  <div class="font-small-2">Upload Foto terbaik <span class="badge badge-dark text-title">Max.3 (JPG/JPEG/PNG)</span></div>
+                  <div class="font-small-2">Upload Foto terbaik <span class="badge badge-dark text-title">Max.3
+                      (JPG/JPEG/PNG)</span></div>
                 </div>
 
-                <div class="col-4 col-md-4 mb-2">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-2">
                   <span class="position-absolute" onclick="delete_image1()">&times;</span>
                   <br>
                   <figure class="image-container">
                     <img id="chosen-image1" style="width: 100% !important">
                   </figure>
-
                   <input class="input-image" type="file" id="upload-button1" name="image1">
                   <label class="label-images" for="upload-button1">
                     <i class="fas fa-upload"></i> &nbsp; Choose A Photo
                   </label>
                 </div>
-                <div class="col-4 col-md-4 mb-2">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-2">
                   <span class="position-absolute" onclick="delete_image2()">&times;</span>
                   <br>
                   <figure class="image-container">
                     <img id="chosen-image2" style="width: 100% !important">
                   </figure>
-
                   <input class="input-image" type="file" id="upload-button2" name="image2">
                   <label class="label-images" for="upload-button2">
                     <i class="fas fa-upload"></i> &nbsp; Choose A Photo
                   </label>
                 </div>
-                <div class="col-4 col-md-4 mb-2">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-2">
                   <span class="position-absolute" onclick="delete_image3()">&times;</span>
                   <br>
                   <figure class="image-container">
                     <img id="chosen-image3" style="width: 100% !important">
                   </figure>
-
                   <input class="input-image" type="file" id="upload-button3" name="image3">
                   <label class="label-images" for="upload-button3">
                     <i class="fas fa-upload"></i> &nbsp; Choose A Photo
@@ -182,56 +178,56 @@
               </div>
               <!-- <button type="button" onclick="pilihVarian();"></button> -->
               <?php if ($_SESSION['akses'] == 'admin' || $_SESSION['akses'] == 'merchant') { ?>
-              <div class="row">
-                <div class="col-4 col-md-4">
-                  <div class="font-small-2 mt-1 mb-1">
-                    Kategori <a href="#" class="badge badge-dark" data-toggle="modal" data-target="#kategori-modal">
-                      <i class="fas fa-plus-circle"></i>Tambah</a>
+                <div class="row">
+                   <div class="col-12 col-sm-6 col-md-4 mb-2">
+                    <div class="font-small-2 mt-1 mb-1">
+                      Kategori <a href="#" class="badge badge-dark" data-toggle="modal" data-target="#kategori-modal">
+                        <i class="fas fa-plus-circle"></i>Tambah</a>
+                    </div>
+                    <select name="kategori" id="kategori" class="select2 form-control" onchange="pilihVarian()">
+                      <option disabled selected>Pilih Kategori</option>
+                      <?php error_reporting(0);
+                      $ketQuery = "SELECT * FROM tabel_kategori_barang ORDER BY nm_kategori ASC";
+                      $executeSat = mysqli_query($koneksi, $ketQuery);
+                      while ($k = mysqli_fetch_array($executeSat)) {
+                        ?>
+                        <option value="<?php echo $k['kd_kategori']; ?>"><?php echo $k['nm_kategori']; ?></option>
+                      <?php } ?>
+                    </select>
                   </div>
-                  <select name="kategori" id="kategori" class="select2 form-control" onchange="pilihVarian()">
-                    <option disabled selected>Pilih Kategori</option>
-                    <?php error_reporting(0);
-                    $ketQuery = "SELECT * FROM tabel_kategori_barang ORDER BY nm_kategori ASC";
-                    $executeSat = mysqli_query($koneksi, $ketQuery);
-                    while ($k = mysqli_fetch_array($executeSat)) {
-                    ?>
-                      <option value="<?php echo $k['kd_kategori']; ?>"><?php echo $k['nm_kategori']; ?></option>
-                    <?php } ?>
-                  </select>
-                </div>
-                <div class="col-4 col-md-4">
-                  <div class="font-small-2 mt-1 mb-1">
-                    Merk <a href="#" class="badge badge-dark" data-toggle="modal" data-target="#merk">
-                      <i class="fas fa-plus-circle"></i>Tambah</a>
+                   <div class="col-12 col-sm-6 col-md-4 mb-2">
+                    <div class="font-small-2 mt-1 mb-1">
+                      Merk <a href="#" class="badge badge-dark" data-toggle="modal" data-target="#merk">
+                        <i class="fas fa-plus-circle"></i>Tambah</a>
+                    </div>
+                    <select name="merk" class="select2 form-control">
+                      <option disabled selected>Pilih Merk</option>
+                      <?php error_reporting(0);
+                      $ketQuery = "SELECT * FROM tabel_merk_barang ORDER BY merk ASC";
+                      $executeSat = mysqli_query($koneksi, $ketQuery);
+                      while ($s = mysqli_fetch_array($executeSat)) {
+                        ?>
+                        <option value="<?php echo $s['id_merk']; ?>"><?php echo $s['merk']; ?></option>
+                      <?php } ?>
+                    </select>
                   </div>
-                  <select name="merk" class="select2 form-control">
-                    <option disabled selected>Pilih Merk</option>
-                    <?php error_reporting(0);
-                    $ketQuery = "SELECT * FROM tabel_merk_barang ORDER BY merk ASC";
-                    $executeSat = mysqli_query($koneksi, $ketQuery);
-                    while ($s = mysqli_fetch_array($executeSat)) {
-                    ?>
-                      <option value="<?php echo $s['id_merk']; ?>"><?php echo $s['merk']; ?></option>
-                    <?php } ?>
-                  </select>
-                </div>
-                <div class="col-4 col-md-4">
-                  <div class="font-small-2 mt-1 mb-1">
-                    Satuan Produk <a href="#" class="badge badge-dark" data-toggle="modal" data-target="#satuan">
-                      <i class="fas fa-plus-circle"></i>Tambah</a>
+                   <div class="col-12 col-sm-6 col-md-4 mb-2">
+                    <div class="font-small-2 mt-1 mb-1">
+                      Satuan Produk <a href="#" class="badge badge-dark" data-toggle="modal" data-target="#satuan">
+                        <i class="fas fa-plus-circle"></i>Tambah</a>
+                    </div>
+                    <select class="select2 form-control" name="satuan">
+                      <option disabled selected>Pilih Satuan</option>
+                      <?php error_reporting(0);
+                      $ketQuery = "SELECT * FROM tabel_satuan_barang ORDER BY nm_satuan ASC";
+                      $executeSat = mysqli_query($koneksi, $ketQuery);
+                      while ($s = mysqli_fetch_array($executeSat)) {
+                        ?>
+                        <option value="<?php echo $s['id_satuan']; ?>"><?php echo $s['nm_satuan']; ?></option>
+                      <?php } ?>
+                    </select>
                   </div>
-                  <select class="select2 form-control" name="satuan">
-                    <option disabled selected>Pilih Satuan</option>
-                    <?php error_reporting(0);
-                    $ketQuery = "SELECT * FROM tabel_satuan_barang ORDER BY nm_satuan ASC";
-                    $executeSat = mysqli_query($koneksi, $ketQuery);
-                    while ($s = mysqli_fetch_array($executeSat)) {
-                    ?>
-                      <option value="<?php echo $s['id_satuan']; ?>"><?php echo $s['nm_satuan']; ?></option>
-                    <?php } ?>
-                  </select>
                 </div>
-              </div>
               <?php } ?>
 
               <!-- varian         -->
@@ -248,21 +244,22 @@
                     </div>
                   </div>
                 </div>
-								<div class="col-6 col-md-4">
-									<div class="font-small-2">Berat (gram)</div>
-									<div class="d-inline-block mb-1">
-										<div class="input-group">
-											<input type="number" name="berat" id="berat" class="form-control" value="">
-										</div>
-									</div>
-								</div>
+                <div class="col-6 col-md-4">
+                  <div class="font-small-2">Berat (gram)</div>
+                  <div class="d-inline-block mb-1">
+                    <div class="input-group">
+                      <input type="number" name="berat" id="berat" class="form-control" value="">
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="row">
                 <div class="col-12 col-md-4">
                   <div class="font-small-2 mb-1">Harga Beli Produk</div>
                   <fieldset class="form-group position-relative has-icon-left input-divider-left">
                     <input type="text" name="harga_beli" class="form-control" placeholder="Isi disini" />
-                    <small class="counter-value float-right"><span class="char-text">Tanpa titik dan Rupiah</span></small>
+                    <small class="counter-value float-right"><span class="char-text">Tanpa titik dan
+                        Rupiah</span></small>
                     <div class="form-control-position"><i class="feather icon-clipboard"></i>
                     </div>
                   </fieldset>
@@ -271,7 +268,8 @@
                   <div class="font-small-2 mb-1">Harga Jual Produk</div>
                   <fieldset class="form-group position-relative has-icon-left input-divider-left">
                     <input type="text" name="harga_jual" class="form-control" placeholder="Isi disini" />
-                    <small class="counter-value float-right"><span class="char-text">Tanpa titik dan Rupiah</span></small>
+                    <small class="counter-value float-right"><span class="char-text">Tanpa titik dan
+                        Rupiah</span></small>
                     <div class="form-control-position"><i class="feather icon-clipboard"></i>
                     </div>
                   </fieldset>
@@ -280,7 +278,8 @@
                   <div class="font-small-2 mb-1">Harga Grosir Produk</div>
                   <fieldset class="form-group position-relative has-icon-left input-divider-left">
                     <input type="text" name="harga_grosir" class="form-control" placeholder="Isi disini" />
-                    <small class="counter-value float-right"><span class="char-text">Tanpa titik dan Rupiah</span></small>
+                    <small class="counter-value float-right"><span class="char-text">Tanpa titik dan
+                        Rupiah</span></small>
                     <div class="form-control-position"><i class="feather icon-clipboard"></i>
                     </div>
                   </fieldset>
@@ -290,7 +289,8 @@
                 <div class="col-12 mt-1">
                   <div class="font-small-2 mb-1">Deskripsi Produk anda</div>
                   <fieldset class="form-label-group mb-0">
-                    <textarea data-length=100 class="form-control char-textarea" rows="3" name="deskripsi" placeholder="Isi disini"></textarea>
+                    <textarea data-length=100 class="form-control char-textarea" rows="3" name="deskripsi"
+                      placeholder="Isi disini"></textarea>
                   </fieldset>
                   <small class="counter-value float-right"><span class="char-count">maks.</span> / 100 karakter</small>
                 </div>
@@ -311,8 +311,8 @@
                 <?php echo $jumlah_user ?></span>Total Produk
             </div>
             <div class="table-responsive">
-            <table class="table table-striped dataex-html5-selectors"  id="example-table">
-            <button id="export-button" class="btn btn-secondary">Excel</button>
+              <table class="table table-striped dataex-html5-selectors" id="example-table">
+                <button id="export-button" class="btn btn-secondary">Excel</button>
                 <thead>
                   <tr>
                     <th>Kode</th>
@@ -336,8 +336,8 @@
                     $hasilSatuan = mysqli_fetch_array(mysqli_query($koneksi, $querySatuan));
                     // var_dump($hasilSatuan);
                     // die;
-
-                  ?>
+                  
+                    ?>
                     <tr>
                       <td><?php echo $b['kd_barang'] ?></td>
                       <td class="text-capitalize"><?php echo $b['nm_barang'] ?></td>
@@ -352,7 +352,7 @@
                           <i class="fas fa-edit"></i>
                         </a>
                         <!-- <a onclick="show(`<?php echo $b['kd_barang'] ?>`)">
-                                      	<i class="fas fa-edit"></i>
+                                        <i class="fas fa-edit"></i>
                                       </a> -->
                         <a class="action-delete" onclick="deleteImage(`<?php echo $b['kd_barang'] ?>`)">
                           <i class="fas fa-trash-alt"></i>
@@ -376,7 +376,8 @@
               </table>
             </div>
             <div class="badge badge-warning text-title">
-              <i><strong>Harga Jual</strong> dan <strong>Harga Grosir</strong> diatas sudah ditambahkan 5% untuk biaya admin</i>
+              <i><strong>Harga Jual</strong> dan <strong>Harga Grosir</strong> diatas sudah ditambahkan 5% untuk biaya
+                admin</i>
             </div>
 
           </div>
@@ -386,7 +387,8 @@
     </div>
 
     <!---------------------------------------- Modal Kategori ------------------------------------>
-    <div class="modal fade" id="kategori-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="kategori-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -486,11 +488,13 @@
 
 
     <!---------------------------------------- Modal Satuan------------------------------------>
-    <div class="modal fade text-left" id="satuan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel20" aria-hidden="true">
+    <div class="modal fade text-left" id="satuan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel20"
+      aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xs" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title font-medium-2" id="myModalLabel20"><i class="fas fa-plus-circle"></i> Tambahkan Satuan baru</h4>
+            <h4 class="modal-title font-medium-2" id="myModalLabel20"><i class="fas fa-plus-circle"></i> Tambahkan
+              Satuan baru</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span></button>
           </div>
@@ -517,11 +521,13 @@
   <!---------------------------------------- Modal Satuan------------------------------------>
 
   <!---------------------------------------- Modal Merk------------------------------------>
-  <div class="modal fade text-left" id="merk" tabindex="-1" role="dialog" aria-labelledby="myModalLabel20" aria-hidden="true">
+  <div class="modal fade text-left" id="merk" tabindex="-1" role="dialog" aria-labelledby="myModalLabel20"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xs" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title font-medium-2" id="myModalLabel20"><i class="fas fa-plus-circle"></i> Tambahkan Merk baru</h4>
+          <h4 class="modal-title font-medium-2" id="myModalLabel20"><i class="fas fa-plus-circle"></i> Tambahkan Merk
+            baru</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span></button>
         </div>
@@ -547,12 +553,14 @@
 </div>
 <!---------------------------------------- Modal Merk------------------------------------>
 <!---------------------------------------- Modal Produk------------------------------------>
-<div class="modal fade" id="modal_produk" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<div class="modal fade" id="modal_produk" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <form method="post" action="../aksi/edit_product.php" enctype="multipart/form-data" class="form-kategori">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title font-medium-2" id="myModalLabel20"><i class="fas fa-plus-circle"></i> Ubah Data Produk</h4>
+          <h4 class="modal-title font-medium-2" id="myModalLabel20"><i class="fas fa-plus-circle"></i> Ubah Data Produk
+          </h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span></button>
         </div>
@@ -561,7 +569,8 @@
             <input type="text" hidden name="kode" id="kd_barang">
             <input type="text" hidden name="kd_toko" id="kd_toko">
             <div class="col-12 col-md-12 mt-2 mb-1">
-              <div class="font-small-2">Upload Foto terbaik <span class="badge badge-dark">Max.3 (JPG/JPEG/PNG)</span></div>
+              <div class="font-small-2">Upload Foto terbaik <span class="badge badge-dark">Max.3 (JPG/JPEG/PNG)</span>
+              </div>
             </div>
             <div class="col-4 col-md-4 mb-2 mt-2">
               <span class="position-absolute" onclick="edit_delete_image1()">&times;</span>
@@ -625,7 +634,7 @@
                 $ketQuery = "SELECT * FROM tabel_kategori_barang ORDER BY nm_kategori ASC";
                 $executeSat = mysqli_query($koneksi, $ketQuery);
                 while ($k = mysqli_fetch_array($executeSat)) {
-                ?>
+                  ?>
                   <option value="<?php echo $k['kd_kategori']; ?>"><?php echo $k['nm_kategori']; ?> </option>
                 <?php } ?>
               </select>
@@ -642,7 +651,7 @@
                 $ketQuery = "SELECT * FROM tabel_merk_barang ORDER BY merk ASC";
                 $executeSat = mysqli_query($koneksi, $ketQuery);
                 while ($s = mysqli_fetch_array($executeSat)) {
-                ?>
+                  ?>
                   <option value="<?php echo $s['id_merk']; ?>"><?php echo $s['merk']; ?></option>
                 <?php } ?>
               </select>
@@ -659,7 +668,7 @@
                 $ketQuery = "SELECT * FROM tabel_satuan_barang ORDER BY nm_satuan ASC";
                 $executeSat = mysqli_query($koneksi, $ketQuery);
                 while ($s = mysqli_fetch_array($executeSat)) {
-                ?>
+                  ?>
                   <option value="<?php echo $s['id_satuan']; ?>"><?php echo $s['nm_satuan']; ?></option>
                 <?php } ?>
               </select>
@@ -693,7 +702,8 @@
             <div class="col-12 col-md-4">
               <div class="font-small-2 mb-1">Harga Beli Produk</div>
               <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                <input type="text" name="harga_beli" id="harga_beli_edit" class="form-control" placeholder="Isi disini" />
+                <input type="text" name="harga_beli" id="harga_beli_edit" class="form-control"
+                  placeholder="Isi disini" />
                 <small class="counter-value float-right"><span class="char-count">Tanpa titik dan Rupiah</span></small>
                 <div class="form-control-position"><i class="feather icon-clipboard"></i>
                 </div>
@@ -702,7 +712,8 @@
             <div class="col-12 col-md-4">
               <div class="font-small-2 mb-1">Harga Jual Produk</div>
               <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                <input type="text" name="harga_jual" id="harga_jual_edit" class="form-control" placeholder="Isi disini" />
+                <input type="text" name="harga_jual" id="harga_jual_edit" class="form-control"
+                  placeholder="Isi disini" />
                 <small class="counter-value float-right"><span class="char-count">Tanpa titik dan Rupiah</span></small>
                 <div class="form-control-position"><i class="feather icon-clipboard"></i>
                 </div>
@@ -711,7 +722,8 @@
             <div class="col-12 col-md-4">
               <div class="font-small-2 mb-1">Harga Grosir Produk</div>
               <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                <input type="text" name="harga_grosir" id="harga_grosir_edit" class="form-control" placeholder="Isi disini" />
+                <input type="text" name="harga_grosir" id="harga_grosir_edit" class="form-control"
+                  placeholder="Isi disini" />
                 <small class="counter-value float-right"><span class="char-count">Tanpa titik dan Rupiah</span></small>
                 <div class="form-control-position"><i class="feather icon-clipboard"></i>
                 </div>
@@ -722,7 +734,8 @@
             <div class="col-12 mt-1">
               <div class="font-small-2 mb-1">Deskripsi Produk anda</div>
               <fieldset class="form-label-group mb-0">
-                <textarea data-length=100 class="form-control char-textarea" rows="3" id="deskripsi_edit" name="deskripsi">Isi disini</textarea>
+                <textarea data-length=100 class="form-control char-textarea" rows="3" id="deskripsi_edit"
+                  name="deskripsi">Isi disini</textarea>
               </fieldset>
               <small class="counter-value float-right"><span class="char-count">maks.</span> / 100 karakter</small>
             </div>
@@ -738,29 +751,29 @@
 </div>
 <!---------------------------------------- Modal Produk------------------------------------>
 <script>
-    $(document).ready(function () {
-        $("#export-button").click(function () {
-            // Mendapatkan tanggal saat ini
-            var today = new Date();
-            var dd = String(today.getDate()).padStart(2, '0');
-            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-            var yyyy = today.getFullYear();
+  $(document).ready(function () {
+    $("#export-button").click(function () {
+      // Mendapatkan tanggal saat ini
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      var yyyy = today.getFullYear();
 
-            var filename = 'sales_' + yyyy + '-' + mm + '-' + dd + '.xlsx'; // Nama file dengan format 'example_tahun-bulan-tanggal.xlsx'
+      var filename = 'sales_' + yyyy + '-' + mm + '-' + dd + '.xlsx'; // Nama file dengan format 'example_tahun-bulan-tanggal.xlsx'
 
-            var wb = XLSX.utils.table_to_book(document.getElementById('example-table'), { sheet: "Sheet JS" });
-            var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+      var wb = XLSX.utils.table_to_book(document.getElementById('example-table'), { sheet: "Sheet JS" });
+      var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
 
-            function s2ab(s) {
-                var buf = new ArrayBuffer(s.length);
-                var view = new Uint8Array(buf);
-                for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
-                return buf;
-            }
+      function s2ab(s) {
+        var buf = new ArrayBuffer(s.length);
+        var view = new Uint8Array(buf);
+        for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+        return buf;
+      }
 
-            saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), filename);
-        });
+      saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), filename);
     });
+  });
 
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
@@ -885,7 +898,7 @@
       type: "GET",
       url: "../aksi/select_varian_in_kategori.php?id_kategori=" + x,
       async: false,
-      success: function(text) {
+      success: function (text) {
         response = text;
       }
     });
@@ -958,7 +971,7 @@
       type: "GET",
       url: "../aksi/select_varian_in_kategori.php?id_kategori=" + x,
       async: false,
-      success: function(text) {
+      success: function (text) {
         response = text;
       }
     });
@@ -1030,7 +1043,7 @@
       type: "GET",
       url: "../aksi/delete_produk.php?id_produk=" + id,
       async: false,
-      success: function(text) {
+      success: function (text) {
         alert(text);
       }
     });
@@ -1053,7 +1066,7 @@
       type: "GET",
       url: "../aksi/show_produk.php?id_produk=" + id,
       async: false,
-      success: function(text) {
+      success: function (text) {
         response = JSON.parse(text);
       }
     });
@@ -1139,4 +1152,3 @@
     $("#modal_produk").modal('show');
   }
 </script>
-
