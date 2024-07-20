@@ -137,7 +137,7 @@ if(isset($_POST['add_kategori'])){
 		// var_dump($image_name_new);
 
 
-		$query = "INSERT INTO tabel_kategori_barang values('','$inesial','$nama','$form','$image_name_new','$varian')";
+		$query = "INSERT INTO tabel_kategori_barang values(null,'$inesial','$nama','$form','$image_name_new','$varian')";
 		$hasil=mysqli_query($koneksi,$query);
 		// echo $hasil;
 		if($query){

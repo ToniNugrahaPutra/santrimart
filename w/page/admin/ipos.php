@@ -89,11 +89,6 @@
                     Quagga.stop();
                   });
                 }
-                function printReceipt() {
-                  // Implement the logic to handle printing here
-                  // For simplicity, this example uses window.print()
-                  window.print();
-                }
                 function processTransferPayment() {
                   // Implement the logic to handle transfer payment here
                   // For simplicity, this example displays an alert
@@ -111,14 +106,6 @@
                   //         alert('Failed to process payment');
                   //     }
                   // });
-                  function cancelTransaction() {
-                    // Implement the logic to cancel the transaction here
-                    // For simplicity, this example resets the table and form
-                    $("#tableTransaksi tbody").empty(); // Clear the table content
-                    $("#kodebarang").val(''); // Clear the barcode input field
-                    // You may also reset other fields, variables, or take additional actions as needed
-                    alert('Transaction canceled.');
-                  }
                 }
               </script>
 
@@ -298,16 +285,6 @@
 
                           <div class="col-12 mb-2">
                             <fieldset>
-                              <label for="basicInput">Pengiriman</label>
-                              <div class="input-group">
-                                <input type="text" id="pengiriman" name="pengiriman" class="form-control"
-                                  placeholder="Isi jika menggunakan jasa pengiriman" aria-describedby="button-addon2"
-                                  onkeyup="hitung_total()">
-                              </div>
-                            </fieldset>
-                          </div>
-                          <div class="col-12 mb-2">
-                            <fieldset>
                               <label for="basicInput">Cash</label>
                               <div class="input-group">
                                 <input type="text" id="cash" class="form-control" placeholder="Masukkan Jumlah Uang"
@@ -321,21 +298,13 @@
                           </div>
                           <div class="col-12 mb-3" id="action-buttons">
                             <div class="d-flex flex-column flex-xxl-column w-100" role="group">
-                              <button type="button" class="btn btn-primary mb-2 w-100" onclick="printReceipt()">
+                              <button type="submit" class="btn btn-primary mb-2 w-100" name="add_penjualan">
                                 Print
                               </button>
-                              <button type="button" class="btn btn-warning text-white mb-2 w-100"
-                                onclick="processTransferPayment()">
-                                Pembayaran<br>Transfer
-                              </button>
-                              <button type="button" class="btn btn-danger w-100" onclick="cancelTransaction()">
+                              <button type="button" class="btn btn-danger w-100" onclick="window.location.reload()">
                                 Batal
                               </button>
                             </div>
-                          </div>
-                          <div class="col-12">
-                            <span style="font-size: 10px;">*Note: Jika pembayaran transfer tidak usah mengisi kolom
-                              Cash</span>
                           </div>
                         </div>
                       </div>

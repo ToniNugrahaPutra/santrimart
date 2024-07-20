@@ -123,7 +123,8 @@
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
                         <h2 class="content-header-title float-left mb-0 text-dark text-capitalize">
-                            <?php echo $_SESSION['akses']; ?></h2>
+                            <?php echo $_SESSION['akses']; ?>
+                        </h2>
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.php?menu=home" class="text-dark">Home</a>
@@ -154,11 +155,13 @@
                 $max_tanggal = $max_tanggal_result['max_tanggal'];
 
                 // Ubah format tanggal ke 'j F Y'
+                if ($min_tanggal !== null) {
                 $min_date = DateTime::createFromFormat('Y-m-d H:i:s', $min_tanggal);
                 $max_date = DateTime::createFromFormat('Y-m-d H:i:s', $max_tanggal);
 
                 $formatted_min_date = $min_date->format('j F, Y');
                 $formatted_max_date = $max_date->format('j F, Y');
+                }
                 ?>
                 <!-- Column selectors with Export Options and print table -->
                 <section id="column-selectors">
@@ -173,42 +176,48 @@
                                 <div class="card-content">
                                     <div class="card-body card-dashboard">
                                         <div class="row">
-                                            <div class="col-lg-3 col-12 mb-3">
-                                                <form action="index.php?menu=sales" method="post" name="postform">
-                                                    <div class="divider">
-                                                        <div class="divider-text">
-                                                            <h5 class="mb-3 font-medium-1 text-uppercase">Tanggal Awal
-                                                            </h5>
+                                            <?php
+                                            if ($min_tanggal !== null) {
+                                                ?>
+                                                <div class="col-lg-3 col-12 mb-3">
+                                                    <form action="index.php?menu=sales" method="post" name="postform">
+                                                        <div class="divider">
+                                                            <div class="divider-text">
+                                                                <h5 class="mb-3 font-medium-1 text-uppercase">Tanggal Awal
+                                                                </h5>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="input-group">
-                                                        <input type='text' name="tanggal_awal"
-                                                            class="form-control pickadate"
-                                                            value="<?php echo $formatted_min_date ?>" />
-                                                        <div class="input-group-append" id="button-addon2">
-                                                            <button class="btn btn-primary rounded-0" type="button"><i
-                                                                    class="far fa-calendar-minus"></i></button>
+                                                        <div class="input-group">
+                                                            <input type='text' name="tanggal_awal"
+                                                                class="form-control pickadate"
+                                                                value="<?php echo $formatted_min_date ?>" />
+                                                            <div class="input-group-append" id="button-addon2">
+                                                                <button class="btn btn-primary rounded-0" type="button"><i
+                                                                        class="far fa-calendar-minus"></i></button>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="divider">
-                                                        <div class="divider-text">
-                                                            <h5 class="mb-3 font-medium-1 text-uppercase">Tanggal Akhir
-                                                            </h5>
+                                                        <div class="divider">
+                                                            <div class="divider-text">
+                                                                <h5 class="mb-3 font-medium-1 text-uppercase">Tanggal Akhir
+                                                                </h5>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="input-group">
-                                                        <input type='text' name="tanggal_akhir"
-                                                            class="form-control pickadate"
-                                                            value="<?php echo $formatted_max_date ?>" />
-                                                        <div class="input-group-append" id="button-addon2">
-                                                            <button class="btn btn-primary rounded-0" type="button"><i
-                                                                    class="far fa-calendar-plus"></i></button>
+                                                        <div class="input-group">
+                                                            <input type='text' name="tanggal_akhir"
+                                                                class="form-control pickadate"
+                                                                value="<?php echo $formatted_max_date ?>" />
+                                                            <div class="input-group-append" id="button-addon2">
+                                                                <button class="btn btn-primary rounded-0" type="button"><i
+                                                                        class="far fa-calendar-plus"></i></button>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <button type="submit" name="cari"
-                                                        class="btn btn-block btn-info mt-2 text-white rounded-0">TAMPIL</button>
-                                                </form>
-                                            </div>
+                                                        <button type="submit" name="cari"
+                                                            class="btn btn-block btn-info mt-2 text-white rounded-0">TAMPIL</button>
+                                                    </form>
+                                                </div>
+                                                <?php
+                                            }
+                                            ?>
                                             <div class="col-lg-9 col-12 mb-1">
                                                 <?php
                                                 if (isset($_POST['cari'])) {
@@ -323,7 +332,8 @@
                                                                             ?>
                                                                         </td>
                                                                         <td style="vertical-align: top;">
-                                                                            <?php echo htmlspecialchars($row['ket']); ?></td>
+                                                                            <?php echo htmlspecialchars($row['ket']); ?>
+                                                                        </td>
                                                                     </tr>
                                                                 <?php } ?>
                                                             </tbody>

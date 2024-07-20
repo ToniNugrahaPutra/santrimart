@@ -14,9 +14,9 @@ if (isset($_POST['add_kategori'])) {
     // var_dump($nama);
     // die;
 
-    $query = "INSERT INTO tabel_kategori_info values('','$nama')";
+    $query = "INSERT INTO tabel_kategori_info values(null,'$nama')";
     $hasil = mysqli_query($koneksi, $query);
-    echo $hasil;
+    // echo $hasil;
     if ($hasil) {
         echo "<script type='text/javascript'>alert('Berhasil Tambah Kategori');history.back()</script>";
     }
