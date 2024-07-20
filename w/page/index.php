@@ -397,6 +397,17 @@ if ($_SESSION['akses'] == 'adminx') {
             case ('mchat');
               include ('admin/multichat.php');
               break;
+            case ('sales');
+              include ('admin/report_sales.php');
+              break;
+
+            case ('balance');
+              include ('admin/report_balance.php');
+              break;
+
+            case ('stock');
+              include ('admin/report_stock.php');
+              break;
             // case ('laporan_stok');
             //   include ('inventory/laporan_stok.php');
             //   break;
