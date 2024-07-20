@@ -23,10 +23,10 @@ if (isset($_POST['idSender']) && isset($_POST['idReceiver']) && isset($_FILES)) 
     $dest = '../img/chat/' . $image_name_new;
 
     if (move_uploaded_file($image_tmp, $dest)) {
-        $query = "INSERT INTO `chat`(`sender_id`,`receiver_id`,`photo`,`timesend`) VALUES ('$idSender','$idReceiver','$image_name_new',now())";
+        $query = "INSERT INTO `chat`(`sender_id`,`receiver_id`,`msg`,`photo`,`timesend`) VALUES ('$idSender','$idReceiver','','$image_name_new',now())";
         mysqli_query($koneksi, $query);
     } else {
-        print("gagal upload");
+        print ("gagal upload");
     }
 } else {
     echo "ERROR: Hush! Sorry $sql. "

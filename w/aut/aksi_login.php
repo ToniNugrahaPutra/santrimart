@@ -68,7 +68,7 @@
 		$update							= mysqli_query($koneksi, "UPDATE `tabel_member` SET `log` = now() WHERE `id_user` = '$id'");
 
 		if (isset($data)) {
-			if ($data['akses'] == 'gudang' || $data['akses'] == 'kasir') {
+			if ($data['akses'] == 'kasir') {
 				
 				echo '<script>
 				setTimeout(function() {
@@ -77,7 +77,7 @@
 						tittle: "Berhasil Login",
 						text: "Anda Berhak Mengakses Halaman Beranda",
 					}).then(function() {
-						window.location = "../page/?menu=inventory";
+						window.location = "../page/?menu=ipos";
 					});
 				}, 1);
 				</script>';

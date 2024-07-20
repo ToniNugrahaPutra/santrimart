@@ -1,12 +1,11 @@
-<!-- <?php
+<?php
 session_start();
 
-if ($_SESSION['akses']!='') {
-    
+if ($_SESSION['akses'] !== '') {
     header('location: w/page/?menu=home');
 } else {
 
-?> -->
+?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->

@@ -31,7 +31,7 @@ if(isset($_POST['upload_product'])){
 	$nm_user  = $_SESSION['nm_user'];
 	$supplier = $_POST['supplier'];
 	$kategori = $_POST['kategori'];
-	$komisi   = $_POST['komisi'];
+	// $komisi   = $_POST['komisi'];
 	$nota 		= strtoupper($_POST['nota']);
 
 	$kode = "";
@@ -236,10 +236,10 @@ if(isset($_POST['upload_product'])){
 	$query_tabel_barang = "INSERT INTO tabel_barang (kd_barang,nm_barang,kd_satuan,kd_kategori,kd_merchant,nota,kd_supplier,kd_toko,deskripsi,berat,panjang,lebar,tinggi,warna,tipe,merek,hrg_beli,hrg_grosir,hrg_jual,diskon,hrg_jual_disk,aktif,komisi,crtdt,crtusr ) VALUES ( '$kode','$nama','$satuan','$kategori','$kd_merchant','$nota','$supplier','$kd_toko','$deskripsi','$berat','$panjang','$lebar','$tinggi','$warna','$type','$merk','$harga_beli','$hrg_grosir','$hrg_jual','$diskon','$hrg_jual_disk',1,'$komisi',NOW(),'$nm_user' )";
 	$hasil_tabel_barang=mysqli_query($koneksi,$query_tabel_barang);
 	
-	$query_tabel_barang_gambar = "INSERT INTO tabel_barang_gambar values('','$kode','$images','$deskripsi')";
+	$query_tabel_barang_gambar = "INSERT INTO tabel_barang_gambar values(null,'$kode','$images','$deskripsi')";
 	$hasil_tabel_barang_gambar=mysqli_query($koneksi,$query_tabel_barang_gambar);
 	
-	$query_tabel_stok_toko = "INSERT INTO tabel_stok_toko values('', '$kd_toko', '$kode', '$stok')";
+	$query_tabel_stok_toko = "INSERT INTO tabel_stok_toko values(null, '$kd_toko', '$kode', '$stok')";
 	$hasil_tabel_stok_toko=mysqli_query($koneksi,$query_tabel_stok_toko);
 
 	if($query_tabel_barang){
