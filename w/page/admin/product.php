@@ -265,7 +265,7 @@
                   </fieldset>
                 </div>
                 <div class="col-12 col-md-4">
-                  <div class="font-small-2 mb-1">Harga Jual Produk</div>
+                  <div class="font-small-2 mb-1">Harga Jual Satuan Produk</div>
                   <fieldset class="form-group position-relative has-icon-left input-divider-left">
                     <input type="text" name="harga_jual" class="form-control" placeholder="Isi disini" />
                     <small class="counter-value float-right"><span class="char-text">Tanpa titik dan

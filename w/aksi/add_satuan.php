@@ -16,7 +16,7 @@ if(isset($_POST['add_satuan'])){
 	}
 
 
-	$query = "INSERT INTO tabel_satuan_barang values('','$nama')";
+	$query = "INSERT INTO tabel_satuan_barang (nm_satuan) VALUES ('$nama')";
 	$hasil=mysqli_query($koneksi,$query);
 	// echo $hasil;
 	if($query){

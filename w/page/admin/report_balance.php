@@ -212,48 +212,54 @@
                                             <div class="col-lg-9 col-12 mb-1">
                                                 <?php
                                                 if (isset($_POST['cari'])) {
-                                                    $tanggal_awal1 = $_POST['tanggal_awal'];
-                                                    $tanggal_akhir1 = $_POST['tanggal_akhir'];
-                                                    if ($tanggal_awal1 !== null && $tanggal_akhir1) {
-                                                        $tanggal_awal2 = DateTime::createFromFormat('j F, Y', $tanggal_awal1);
-                                                        $tanggal_akhir2 = DateTime::createFromFormat('j F, Y', $tanggal_akhir1);
-                                                        if ($tanggal_akhir1 && $tanggal_akhir2) {
-                                                            $tanggal_awal = $tanggal_awal2->format('Y-m-d') . ' 00:00:00';
-                                                            $tanggal_akhir = $tanggal_akhir2->format('Y-m-d') . ' 00:00:00';
+                                                    $tanggal_awal1 = isset($_POST['tanggal_awal']) ? $_POST['tanggal_awal'] : '';
+                                                    $tanggal_akhir1 = isset($_POST['tanggal_akhir']) ? $_POST['tanggal_akhir'] : '';
+
+                                                    $tanggal_awal = $tanggal_akhir = '';
+
+                                                    if (!empty($tanggal_awal1) && !empty($tanggal_akhir1)) {
+                                                        try {
+                                                            $tanggal_awal2 = DateTime::createFromFormat('j F, Y', $tanggal_awal1);
+                                                            $tanggal_akhir2 = DateTime::createFromFormat('j F, Y', $tanggal_akhir1);
+
+                                                            if ($tanggal_awal2 && $tanggal_akhir2) {
+                                                                $tanggal_awal = $tanggal_awal2->format('Y-m-d') . ' 00:00:00';
+                                                                $tanggal_akhir = $tanggal_akhir2->format('Y-m-d') . ' 23:59:59';
+                                                            }
+                                                        } catch (Exception $e) {
+                                                            echo "Error: " . $e->getMessage();
                                                         }
                                                     }
+
                                                     $laba_total = 0;
 
-                                                    if (empty($tanggal_awal) and empty($tanggal_akhir)) {
-                                                        //jika tidak menginput apa2
-                                                        ?>
-                                                        <span class="nama-user" style="color: #d16010;">
-                                                            <i><b>Data Penjualan : </b> Pencarian dari tanggal
-                                                                <b><?php echo $_POST['tanggal_awal'] ?></b>
-                                                                sampai dengan tanggal
-                                                                <b><?php echo $_POST['tanggal_akhir'] ?></b>
-                                                            </i>
-                                                        </span>
-                                                        <?php
-                                                        $query = mysqli_query($koneksi, "SELECT * FROM tabel_penjualan ORDER BY tgl_penjualan DESC");
-                                                        $jumlah = mysqli_fetch_array(mysqli_query($koneksi, "SELECT SUM(total_penjualan) AS total FROM tabel_penjualan ORDER BY tgl_penjualan DESC"));
+                                                    // Prepare database queries
+                                                    if (empty($tanggal_awal) && empty($tanggal_akhir)) {
+                                                        $stmt = $koneksi->prepare("SELECT * FROM tabel_penjualan ORDER BY tgl_penjualan DESC");
+                                                        $stmt_total = $koneksi->prepare("SELECT SUM(total_penjualan) AS total FROM tabel_penjualan");
                                                     } else {
-                                                        ?>
-
-                                                        <span class="nama-user" style="color: #d16010;">
-                                                            <i><b>Data Laba : </b> Pencarian dari tanggal
-                                                                <b><?php echo $_POST['tanggal_awal'] ?></b> sampai dengan
-                                                                tanggal <b><?php echo $_POST['tanggal_akhir'] ?></b>
-                                                            </i>
-                                                        </span>
-
-                                                        <?php
-
-                                                        $query = mysqli_query($koneksi, "SELECT * FROM tabel_penjualan WHERE tgl_penjualan BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tgl_penjualan DESC");
-                                                        $jumlah = mysqli_fetch_array(mysqli_query($koneksi, "SELECT SUM(total_penjualan) AS total FROM tabel_penjualan WHERE tgl_penjualan BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tgl_penjualan DESC"));
+                                                        $stmt = $koneksi->prepare("SELECT * FROM tabel_penjualan WHERE tgl_penjualan BETWEEN ? AND ? ORDER BY tgl_penjualan DESC");
+                                                        $stmt->bind_param("ss", $tanggal_awal, $tanggal_akhir);
+                                                        $stmt_total = $koneksi->prepare("SELECT SUM(total_penjualan) AS total FROM tabel_penjualan WHERE tgl_penjualan BETWEEN ? AND ?");
+                                                        $stmt_total->bind_param("ss", $tanggal_awal, $tanggal_akhir);
                                                     }
 
+                                                    $stmt->execute();
+                                                    $query = $stmt->get_result();
+
+                                                    $stmt_total->execute();
+                                                    $jumlah = $stmt_total->get_result()->fetch_assoc();
                                                     ?>
+
+                                                    <span class="nama-user" style="color: #d16010;">
+                                                        <i><b>Data
+                                                                <?php echo empty($tanggal_awal) && empty($tanggal_akhir) ? 'Penjualan' : 'Laba'; ?>
+                                                                : </b> Pencarian dari tanggal
+                                                            <b><?php echo htmlspecialchars($tanggal_awal1) ?></b> sampai
+                                                            dengan
+                                                            tanggal <b><?php echo htmlspecialchars($tanggal_akhir1) ?></b>
+                                                        </i>
+                                                    </span>
 
                                                     <div class="badge badge-primary float-right">
                                                         Total Laba
@@ -280,98 +286,86 @@
                                                                     <th>Ket</th>
                                                                 </tr>
                                                             </thead>
-                                                            <?php
-                                                            //untuk penomoran data
-                                                            $no = 0;
-                                                            //menampilkan data
-                                                            while ($row = mysqli_fetch_array($query)) {
-                                                                ?>
-                                                                <tbody>
+                                                            <tbody>
+                                                                <?php
+                                                                $no = 0;
+                                                                while ($row = $query->fetch_assoc()) {
+                                                                    $no++;
+                                                                    ?>
                                                                     <tr>
+                                                                        <td style="vertical-align: top;"><?php echo $no; ?></td>
                                                                         <td style="vertical-align: top;">
-                                                                            <?php echo $no = $no + 1; ?>
+                                                                            <?php echo htmlspecialchars($row['no_faktur_penjualan']); ?>
                                                                         </td>
                                                                         <td style="vertical-align: top;">
-                                                                            <?php echo $row['no_faktur_penjualan']; ?>
+                                                                            <?php echo htmlspecialchars($row['tgl_penjualan']); ?>
                                                                         </td>
-                                                                        <td style="vertical-align: top;">
-                                                                            <?php echo $row['tgl_penjualan']; ?>
-                                                                        </td>
-                                                                        <td style="vertical-align: top;">
-                                                                            Rp.
+                                                                        <td style="vertical-align: top;">Rp.
                                                                             <?php echo number_format($row['total_penjualan'], 0, ',', '.'); ?>
-                                                                            <!-- ?php echo $row['total_penjualan']; ? -->
                                                                         </td>
                                                                         <td>
                                                                             <?php
-                                                                            $c = mysqli_query($koneksi, "SELECT * FROM tabel_barang, tabel_rinci_penjualan WHERE tabel_barang.kd_barang = tabel_rinci_penjualan.kd_barang AND tabel_rinci_penjualan.no_faktur_penjualan = '$row[no_faktur_penjualan]' ");
-                                                                            $harga_beli = 0;
+                                                                            $stmt_barang = $koneksi->prepare("SELECT b.nm_barang, r.jumlah, b.hrg_beli 
+                                                                  FROM tabel_barang b 
+                                                                  JOIN tabel_rinci_penjualan r ON b.kd_barang = r.kd_barang 
+                                                                  WHERE r.no_faktur_penjualan = ?");
+                                                                            $stmt_barang->bind_param("s", $row['no_faktur_penjualan']);
+                                                                            $stmt_barang->execute();
+                                                                            $result_barang = $stmt_barang->get_result();
 
-                                                                            // var_dump(mysqli_fetch_array($c));
-                                                                            // die;
-                                                                    
-                                                                            while ($d = mysqli_fetch_array($c)) {
-                                                                                $hrg = $d['harga'];
+                                                                            $harga_beli = 0;
+                                                                            while ($d = $result_barang->fetch_assoc()) {
                                                                                 $jml = $d['jumlah'];
-                                                                                $total_hrg = $hrg * $jml;
                                                                                 $harga_beli += (intval($d['hrg_beli']) * $jml);
-                                                                                ?>
-                                                                                <?php echo $jml ?> &nbsp;
-                                                                                <?php echo intval($d['hrg_beli']); ?> &nbsp;
-                                                                                <?php echo $d['nm_barang'] ?>
-                                                                                <hr />
-                                                                            <?php }
+                                                                                echo htmlspecialchars($jml) . " &nbsp; " .
+                                                                                    htmlspecialchars(intval($d['hrg_beli'])) . " &nbsp; " .
+                                                                                    htmlspecialchars($d['nm_barang']) . "<hr />";
+                                                                            }
                                                                             ?>
                                                                         </td>
                                                                         <td style="vertical-align: top;">
-                                                                            <?php
-                                                                            echo $harga_beli;
-                                                                            ?>
-                                                                        </td>
+                                                                            <?php echo $harga_beli; ?></td>
                                                                         <td style="vertical-align: top;">
                                                                             <?php
                                                                             $laba = $row['total_penjualan'] - $harga_beli;
                                                                             echo $laba;
-
                                                                             $laba_total += $laba;
                                                                             ?>
                                                                         </td>
                                                                         <td style="vertical-align: top;">
-                                                                            <?php $e = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_member WHERE tabel_member.id_user = '$row[id_user]'")); ?>
-                                                                            <?php echo $e['nm_user'] ?>
+                                                                            <?php
+                                                                            $stmt_member = $koneksi->prepare("SELECT nm_user FROM tabel_member WHERE id_user = ?");
+                                                                            $stmt_member->bind_param("s", $row['id_user']);
+                                                                            $stmt_member->execute();
+                                                                            $result_member = $stmt_member->get_result();
+                                                                            $e = $result_member->fetch_assoc();
+                                                                            echo htmlspecialchars($e['nm_user']);
+                                                                            ?>
                                                                         </td>
                                                                         <td style="vertical-align: top;">
-                                                                            <?php echo $row['ket']; ?>
-                                                                        </td>
+                                                                            <?php echo htmlspecialchars($row['ket']); ?></td>
                                                                     </tr>
                                                                 <?php } ?>
                                                             </tbody>
                                                             <tfoot>
                                                                 <tr>
-                                                                    <th>TOTAL</th>
-                                                                    <th>
-                                                                        Rp.
-                                                                        <?php echo number_format($jumlah['total'], 2, ',', '.'); ?>
-                                                                        <!-- <p class="fs-1">?php echo $laba_total; ?</p> -->
+                                                                    <th colspan="6">TOTAL</th>
+                                                                    <th>Rp.
+                                                                        <?php echo number_format($laba_total, 2, ',', '.'); ?>
                                                                     </th>
-                                                                </tr>
-
-                                                                <tr>
-                                                                    <td>
-                                                                        <?php
-                                                                        //jika data tidak ditemukan
-                                                                        if (mysqli_num_rows($query) == 0) {
-                                                                            echo "<font color=red><blink>Tidak ada data yang dicari!</blink></font>";
-                                                                        }
-                                                                        ?>
-                                                                    </td>
+                                                                    <th colspan="2"></th>
                                                                 </tr>
                                                             </tfoot>
                                                         </table>
                                                     </div>
-                                                <?php } else {
-                                                    unset($_POST['cari']);
-                                                } ?>
+                                                    <?php
+                                                    if ($query->num_rows == 0) {
+                                                        echo "<p class='text-danger'><i>Tidak ada data yang dicari!</i></p>";
+                                                    }
+                                                } else {
+                                                    echo "<p>Silakan masukkan kriteria pencarian.</p>";
+                                                }
+                                                ?>
                                             </div>
                                         </div>
                                     </div>

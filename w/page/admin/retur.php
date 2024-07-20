@@ -163,10 +163,14 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $ketQuery = "SELECT * FROM tabel_rinci_penjualan, tabel_retur WHERE tabel_rinci_penjualan.kd_barang = tabel_retur.kd_barang";
+                                    $ketQuery = "SELECT * FROM tabel_rinci_penjualan 
+                                INNER JOIN tabel_retur ON tabel_rinci_penjualan.kd_barang = tabel_retur.kd_barang";
                                     $executeSat = mysqli_query($koneksi, $ketQuery);
                                     while ($b = mysqli_fetch_array($executeSat)) {
-                                        // print_r($b)
+                                        // echo '<pre>';
+                                        // print_r($b);
+                                        // echo $b['id'];
+                                        // echo '</pre>';
                                         ?>
                                         <tr>
                                             <td><?php echo $b['kd_barang']; ?></td>
@@ -175,10 +179,10 @@
                                             <td><?php echo $b['tgl_retur']; ?></td>
                                             <td><?php echo $b['ket']; ?></td>
                                             <td>
-                                                <a href="index.php?menu=edit_retur&id=<?php echo $b['id'] ?>">
+                                                <a href="index.php?menu=edit_retur&id=<?php echo $b['id']; ?>">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <a class="action-delete" onclick="delete_(`<?php echo $b['id'] ?>`)">
+                                                <a class="action-delete" onclick="delete_(`<?php echo $b['id']; ?>`)">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </a>
                                             </td>
@@ -261,29 +265,29 @@
     }
 </script>
 <script>
-        $(document).ready(function() {
-    $("#export-button").click(function() {
-        // Mendapatkan tanggal saat ini
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear();
+    $(document).ready(function () {
+        $("#export-button").click(function () {
+            // Mendapatkan tanggal saat ini
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
 
-        var filename = 'retur_' + yyyy + '-' + mm + '-' + dd + '.xlsx'; // Nama file dengan format 'example_tahun-bulan-tanggal.xlsx'
+            var filename = 'retur_' + yyyy + '-' + mm + '-' + dd + '.xlsx'; // Nama file dengan format 'example_tahun-bulan-tanggal.xlsx'
 
-        var wb = XLSX.utils.table_to_book(document.getElementById('example-table'), {sheet: "Sheet JS"});
-        var wbout = XLSX.write(wb, {bookType: 'xlsx', type: 'binary'});
+            var wb = XLSX.utils.table_to_book(document.getElementById('example-table'), { sheet: "Sheet JS" });
+            var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
 
-        function s2ab(s) {
-            var buf = new ArrayBuffer(s.length);
-            var view = new Uint8Array(buf);
-            for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
-            return buf;
-        }
+            function s2ab(s) {
+                var buf = new ArrayBuffer(s.length);
+                var view = new Uint8Array(buf);
+                for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+                return buf;
+            }
 
-        saveAs(new Blob([s2ab(wbout)], {type: "application/octet-stream"}), filename);
+            saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), filename);
+        });
     });
-});
 
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>

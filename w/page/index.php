@@ -71,93 +71,7 @@ if ($_SESSION['akses'] == 'adminx') {
 
       <?php
 
-      if ($_SESSION['akses'] == 'member') {
-
-        if (isset($_GET['menu'])) {
-          $menu = $_GET['menu'];
-
-
-          switch ($menu) {
-
-            case ('home');
-              include ('home.php');
-              break;
-
-            case ('account');
-              include ('account.php');
-              break;
-
-            case ('mchat');
-              include ('multichat.php');
-              break;
-
-            case ('schat');
-              include ('singlechat.php');
-              break;
-
-            case ('now');
-              include ('news.php');
-              break;
-
-            case ('detail');
-              include ('detail.php');
-              break;
-
-            case ('shop');
-              include ('shopping.php');
-              break;
-
-            case ('product');
-              include ('product.php');
-              break;
-
-            case ('cart');
-              include ('cart.php');
-              break;
-
-            case ('pay');
-              include ('payment.php');
-              break;
-
-            case ('history');
-              include ('history.php');
-              break;
-
-            case ('promo');
-              include ('promo.php');
-              break;
-
-            case ('merchant');
-              include ('merchant.php');
-              break;
-
-            case ('map');
-              include ('map.php');
-              break;
-
-            case ('delivery');
-              include ('new_delivery.php');
-              break;
-
-            case ('delivery_detail');
-              include ('new_delivery_detail.php');
-              break;
-
-            case ('dashboard');
-              include ('affiliate_dashboard.php');
-              break;
-
-            case ('produk_link');
-              include ('affiliate_produk_link.php');
-              break;
-
-            case ('komisi');
-              include ('affiliate_komisi.php');
-              break;
-
-          }
-        }
-      } else if ($_SESSION['akses'] == 'kepala_toko') {
+      if ($_SESSION['akses'] == 'kepala_toko') {
 
         if (isset($_GET['menu'])) {
           $menu = $_GET['menu'];
@@ -172,92 +86,92 @@ if ($_SESSION['akses'] == 'adminx') {
               include ('account.php');
               break;
 
-             case ('ipos');
+            case ('ipos');
               include ('admin/ipos.php');
               break;
 
             // case ('wholesale');
             //   include ('admin/wholesale.php');
             //   break;
-
+      
             // case ('product');
             //   include ('admin/product.php');
             //   break;
-
+      
             // case ('member');
             //   include ('admin/member.php');
             //   break;
-
+      
             // case ('merchant');
             //   include ('admin/merchant.php');
             //   break;
-
+      
             // case ('kelola');
             //   include ('admin/kelola_product.php');
             //   break;
-
+      
             // case ('order');
             //   include ('admin/order-online.php');
             //   break;
-
+      
             // case ('ads');
             //   include ('admin/ads.php');
             //   break;
-
+      
             // case ('info');
             //   include ('admin/info.php');
             //   break;
-
+      
             // case ('pembayaran');
             //   include ('admin/pembayaran.php');
             //   break;
-
+      
             // case ('kurir');
             //   include ('admin/kurir.php');
             //   break;
-
+      
             // case ('user');
             //   include ('admin/user.php');
             //   break;
-
+      
 
 
             // case ('profile');
             //   include ('admin/profile_toko.php');
             //   break;
-
+      
             // case ('keuangan');
             //   include ('admin/keuangan.php');
             //   break;
-
+      
             // case ('streaming');
             //   include ('admin/streaming.php');
             //   break;
-
+      
             // case ('saldo');
             //   include ('admin/saldo.php');
             //   break;
-
-              // case ('transfer');
-              // include ('admin/transfer.php');
-              // break;
-
+      
+            // case ('transfer');
+            // include ('admin/transfer.php');
+            // break;
+      
             //   case ('retur');
             //   include ('admin/retur.php');
             //   break;
-
+      
             // case ('nota');
             //   include ('admin/nota.php');
             //   break;
-
+      
             // case ('nota2');
             //   include ('admin/nota2.php');
             //   break;
-
+      
             // case ('edit_retur');
             //   include ('admin/show_retur.php');
             //   break;
-
+      
             case ('sales');
               include ('admin/report_sales.php');
               break;
@@ -273,7 +187,7 @@ if ($_SESSION['akses'] == 'adminx') {
             // case ('edit_product');
             //   include ('admin/edit_product.php');
             //   break;
-
+      
             // case ('report_member');
             //   include ('admin/list_report_member.php');
             //   break;
@@ -282,6 +196,12 @@ if ($_SESSION['akses'] == 'adminx') {
 
 
       } else if ($_SESSION['akses'] == 'admin') {
+
+        if (isset($_GET['kode_produk'])) {
+
+          include ('admin/show_product.php');
+
+        }
 
         if (isset($_GET['menu'])) {
 
@@ -300,8 +220,11 @@ if ($_SESSION['akses'] == 'adminx') {
               include ('admin/ipos.php');
               break;
 
-            case ('wholesale');
-              include ('admin/wholesale.php');
+            // case ('wholesale');
+            //   include ('admin/wholesale.php');
+            //   break;
+            case ('mchat');
+              include ('admin/multichat.php');
               break;
 
             case ('product');
@@ -404,12 +327,12 @@ if ($_SESSION['akses'] == 'adminx') {
               include ('admin/list_report_member.php');
               break;
 
-       
+
 
             // ============================ INVENTORY =============================
       
             case ('inventory');
-              include ('inventory/home.php');
+              include ('admin/home.php');
               break;
 
             case ('input_barang');
@@ -461,8 +384,12 @@ if ($_SESSION['akses'] == 'adminx') {
               include ('inventory/daftar_suplier.php');
               break;
 
+            // case ('laporan_stok');
+            //   include ('inventory/laporan_stok.php');
+            //   break;
+      
             case ('laporan_stok');
-              include ('inventory/laporan_stok.php');
+              include ('admin/report_stock.php');
               break;
 
             case ('retur_beli');
@@ -482,28 +409,10 @@ if ($_SESSION['akses'] == 'adminx') {
         if (isset($_GET['menu'])) {
 
           $menu = $_GET['menu'];
-
           switch ($menu) {
-            case ('inventory');
-              include ('inventory/home.php');
+            case ('ipos');
+              include ('admin/ipos.php');
               break;
-
-            case ('ipos_new');
-              include ('inventory/ipos.php');
-              break;
-
-            case ('retur_jual');
-              include ('inventory/retur_penjualan.php');
-              break;
-
-            case ('laporan_stok');
-              include ('inventory/laporan_stok.php');
-              break;
-
-            case ('account');
-              include ('account.php');
-              break;
-
           }
 
         }
@@ -524,5 +433,119 @@ if ($_SESSION['akses'] == 'adminx') {
 <!-- END: Body-->
 
 
+<script type="text/javascript">
+  $(document).ready(function () {
+    // Periksa apakah parameter menu memiliki nilai mchat
+    var menu = getParameterByName('menu');
+    if (menu === 'mchat') {
+      // Jika menu adalah mchat, jalankan interval untuk mengambil chat
+      setInterval(() => {
+        var idSender = $("#idSender").val();
+        var idReceiver = $("#idReceiver").val();
+        var chatp = document.getElementById("chat-input").value;
+
+        $.ajax({
+          type: "GET",
+          url: "../aksi/get_chat.php",
+          data: {
+            idSender: idSender,
+            idReceiver: idReceiver,
+          },
+          success: function (data) {
+            $('#chat-box').html(data);
+          }
+        })
+      }, 1000);
+    }
+  });
+
+  // Fungsi untuk mendapatkan nilai parameter dari URL
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  }
+
+
+  function sendphoto() {
+    var idSender = $("#idSender").val();
+    var idReceiver = $("#idReceiver").val();
+    var file_data = $("#sub").prop("files")[0];
+    var form_data = new FormData(); // Creating object of FormData class
+    form_data.append("file", file_data);
+    form_data.append("idSender", idSender);
+    form_data.append("idReceiver", idReceiver);
+    $.ajax({
+      url: "../aksi/add_photo.php",
+      type: "post",
+      dataType: 'script',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: form_data,
+      success: function (data) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Berhasil!',
+          text: 'File berhasil diunggah dan pesan terkirim.',
+          confirmButtonText: 'OK'
+        })
+      },
+      error: function (xhr, status, error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal!',
+          text: 'Terjadi kesalahan: ' + error,
+          confirmButtonText: 'OK'
+        });
+      }
+    });
+
+  }
+
+  function send() {
+    var idSender = $("#idSender").val();
+    var idReceiver = $("#idReceiver").val();
+    var chatp = document.getElementById("chat-input").value;
+    $.ajax({
+      url: "../aksi/add_chat.php",
+      type: "post",
+      data: {
+        idSender: idSender,
+        idReceiver: idReceiver,
+        // photo: photo,
+        chatp: chatp
+      },
+      success: function (data) {
+        document.getElementById("chat-input").value = "";
+      }
+    })
+
+  }
+
+
+  function enter() {
+    var file = $('#sub')[0].files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function (e) {
+      var img = $('#image_preview');
+      img.attr('src', this.result);
+
+    }
+
+    var html = '<div class="chat-content">' + '<img id="image_preview" width="100px" height="100px">' +
+      "</img>" +
+      "</div>";
+    $(".chat:last-child .chat-body").append(html);
+    $(".message").val("");
+    $(".user-chats").scrollTop($(".user-chats > .chats").height());
+
+  }
+</script>
 
 </html>
