@@ -251,7 +251,16 @@
                           $query = $stmt->get_result();
 
                           $stmt_total->execute();
-                          $jumlah = $stmt_total->get_result()->fetch_assoc();
+
+
+                          if ($stmt_total && $stmt_total->execute()) {
+                            $result = $stmt_total->get_result();
+                            if ($result) {
+                              $jumlah = $result->fetch_assoc();
+                            }
+                          }
+
+                          $total = isset($jumlah['total']) ? $jumlah['total'] : 0;
                           ?>
 
                           <span class="nama-user" style="color: #d16010;">
@@ -264,7 +273,7 @@
                           <div class="badge badge-primary float-right">
                             Total Laba
                             <span class="font-small-3 nama-user">
-                              Rp. <?php echo number_format($jumlah['total'], 0, ',', '.') ?>
+                              Rp. <?php echo number_format($total, 0, ',', '.'); ?>
                             </span>
                           </div>
 
@@ -299,7 +308,7 @@
                                     </td>
                                     <td>
                                       <?php
-                                      $stmt_barang = $koneksi->prepare("SELECT b.nm_barang, r.jumlah, b.stok_awal 
+                                      $stmt_barang = $koneksi->prepare("SELECT b.nm_barang, r.jumlah, r.stok_awal 
                                                                   FROM tabel_barang b 
                                                                   JOIN tabel_rinci_penjualan r ON b.kd_barang = r.kd_barang 
                                                                   WHERE r.no_faktur_penjualan = ?");

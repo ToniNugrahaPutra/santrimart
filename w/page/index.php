@@ -90,6 +90,10 @@ if ($_SESSION['akses'] == 'adminx') {
               include ('admin/ipos.php');
               break;
 
+            case ('mchat');
+              include ('admin/multichat.php');
+              break;
+
             // case ('wholesale');
             //   include ('admin/wholesale.php');
             //   break;
@@ -365,17 +369,23 @@ if ($_SESSION['akses'] == 'adminx') {
         }
 
       } else if ($_SESSION['akses'] == 'gudang') {
+        if (isset($_GET['kode_produk'])) {
 
+          include ('admin/show_product.php');
+
+        }
         if (isset($_GET['menu'])) {
 
           $menu = $_GET['menu'];
 
           switch ($menu) {
 
-            case ('inventory');
-              include ('inventory/home.php');
+            case ('home');
+              include ('admin/home.php');
               break;
-
+            case ('product');
+              include ('admin/product.php');
+              break;
             case ('input_barang');
               include ('inventory/input_barang.php');
               break;
@@ -384,6 +394,9 @@ if ($_SESSION['akses'] == 'adminx') {
               include ('inventory/daftar_suplier.php');
               break;
 
+            case ('mchat');
+              include ('admin/multichat.php');
+              break;
             // case ('laporan_stok');
             //   include ('inventory/laporan_stok.php');
             //   break;
@@ -412,6 +425,14 @@ if ($_SESSION['akses'] == 'adminx') {
           switch ($menu) {
             case ('ipos');
               include ('admin/ipos.php');
+              break;
+
+            case ('nota');
+              include ('admin/nota.php');
+              break;
+
+            case ('nota2');
+              include ('admin/nota2.php');
               break;
           }
 

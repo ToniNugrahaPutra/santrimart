@@ -108,25 +108,25 @@
                 $executeSat = mysqli_query($koneksi, $satQuery);
                 while ($barang = mysqli_fetch_array($executeSat)) {
                     ?>
-
-                    <div class="col-xl-3 col-md-4 col-sm-6 col-6">
-                        <a href="index.php?menu=product" class="text-dark s">
-                            <div class="card text-center">
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <div class="avatar p-50 m-0 mb-1" style="background:<?php echo $tombol; ?>">
-                                            <div class="avatar-content">
-                                                <i class="fas fa-box-open font-medium-5"></i>
+                    <?php if ($_SESSION['akses'] == 'admin' || $_SESSION['akses'] == 'gudang') { ?>
+                        <div class="col-xl-3 col-md-4 col-sm-6 col-6">
+                            <a href="index.php?menu=product" class="text-dark s">
+                                <div class="card text-center">
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <div class="avatar p-50 m-0 mb-1" style="background:<?php echo $tombol; ?>">
+                                                <div class="avatar-content">
+                                                    <i class="fas fa-box-open font-medium-5"></i>
+                                                </div>
                                             </div>
+                                            <h2 class="text-bold-700"><?= $barang['barang'] ?></h2>
+                                            <p class="mb-0 line-ellipsis">PRODUK</p>
                                         </div>
-                                        <h2 class="text-bold-700"><?= $barang['barang'] ?></h2>
-                                        <p class="mb-0 line-ellipsis">PRODUK</p>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-
+                            </a>
+                        </div>
+                    <?php } ?>
                 <?php } ?>
 
                 <?php $satQuery = "SELECT COUNT(no_faktur_penjualan) as jml FROM tabel_penjualan";
@@ -212,24 +212,27 @@
                 <?php } ?>
 
 
+                <?php if ($_SESSION['akses'] == 'admin' || $_SESSION['akses'] == 'gudang') { ?>
 
-                <div class="col-xl-3 col-md-4 col-sm-6 col-6">
-                    <a href="index.php?menu=mchat" class="text-dark s">
-                        <div class="card text-center">
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <div class="avatar p-50 m-0 mb-1" style="background:<?php echo $tombol; ?>">
-                                        <div class="avatar-content">
-                                            <i class="fas fa-comment font-medium-5"></i>
+                    <div class="col-xl-3 col-md-4 col-sm-6 col-6">
+                        <a href="index.php?menu=mchat" class="text-dark s">
+                            <div class="card text-center">
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div class="avatar p-50 m-0 mb-1" style="background:<?php echo $tombol; ?>">
+                                            <div class="avatar-content">
+                                                <i class="fas fa-comment font-medium-5"></i>
+                                            </div>
                                         </div>
+                                        <p class="mb-0 line-ellipsis" style="color: white;">Chat</p>
+                                        <h2 class="text-bold-700">Chat</h2>
+                                        </h2>
                                     </div>
-                                    <p class="mb-0 line-ellipsis"style="color: white;" >Chat</p>
-                                    <h2 class="text-bold-700" >Chat</h2></h2>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                <?php } ?>
             </div>
             <div class="row">
 
@@ -298,7 +301,7 @@
                     </div>
 
                 <?php } ?>
-                <?php if ($_SESSION['akses'] == 'admin' || $_SESSION['akses'] == 'kasir') { ?>
+                <?php if ($_SESSION['akses'] == 'admin' || $_SESSION['akses'] == 'gudang') { ?>
                     <div class="col-xl-3 col-md-4 col-sm-6 col-6">
                         <a href="index.php?menu=retur_jual" class="text-dark s">
                             <div class="card text-center">

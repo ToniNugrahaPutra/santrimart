@@ -219,27 +219,55 @@ function convertDate($tgl)
                     </ul>
 
                     <h3 class="primary p-1 mb-0">Contacts</h3>
-                    <!-- <ul class="chat-users-list-wrapper media-list">
-                        <li>
-                            <div class="pr-1">
-                                <span class="avatar m-0 avatar-md"><img class="media-object rounded-circle"
-                                        src="../img/user/user.png" height="42" width="42"
-                                        alt="Generic placeholder image">
-                                    <i></i>
-                                </span>
-                            </div>
-                            <div class="user-chat-info">
-                                <div class="contact-info">
-                                    <h5 class="font-weight-bold mb-0">Sarah Woods</h5>
-                                    <p class="truncate">Cake pie jelly jelly beans. Marzipan lemon drops halvah cake.
-                                        Pudding cookie lemon drops icing.</p>
-                                </div>
-                                <div class="contact-meta">
-                                    <span class="float-right mb-25"></span>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
+                    <ul class="chat-users-list-wrapper media-list">
+                        <?php
+                        $idUserActive = $_SESSION['id_user'];
+                        $ketQuery = "SELECT 
+                                    id_user, 
+                                    nm_user, 
+                                    foto, 
+                                    akses
+                                FROM 
+                                    tabel_member
+                                WHERE 
+                                    id_user != ?";
+
+                        $stmt = $koneksi->prepare($ketQuery);
+                        $stmt->bind_param("i", $idUserActive);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+
+                        if ($result->num_rows > 0) {
+                            while ($a = $result->fetch_assoc()) {
+                                $id = $a['id_user'];
+                                ?>
+                                <a href="?menu=mchat&id=<?= $id ?>">
+                                    <li>
+                                        <div class="pr-1">
+                                            <span class="avatar m-0 avatar-md">
+                                                <img class="media-object rounded-circle" src="./../img/user/<?= $a['foto'] ?>"
+                                                    onerror="this.src='./../img/user/user.png';" height="40" width="40">
+                                            </span>
+                                        </div>
+                                        <div class="user-chat-info">
+                                            <div class="contact-info">
+                                                <h5 class="font-weight-bold mb-0"><?= $a['nm_user'] ?></h5>
+                                                <p class="truncate"></p>
+                                            </div>
+                                            <div class="contact-meta">
+                                                <span class="float-right mb-25"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
+                                <?php
+                            }
+                        } else {
+                            // Tidak ada hasil yang ditemukan
+                            echo "<p>Tidak ada Contact yang tersedia.</p>";
+                        }
+                        ?>
+                        <!-- <li>
                             <div class="pr-1">
                                 <span class="avatar m-0 avatar-md"><img class="media-object rounded-circle"
                                         src="../img/user/user.png" height="42" width="42"
@@ -371,8 +399,8 @@ function convertDate($tgl)
                                     <span class="float-right mb-25"></span>
                                 </div>
                             </div>
-                        </li>
-                    </ul> -->
+                        </li> -->
+                    </ul>
                 </div>
             </div>
             <!--/ Chat Sidebar area -->

@@ -255,7 +255,14 @@
                                                     $query = $stmt->get_result();
 
                                                     $stmt_total->execute();
-                                                    $jumlah = $stmt_total->get_result()->fetch_assoc();
+                                                    if ($stmt_total && $stmt_total->execute()) {
+                                                        $result = $stmt_total->get_result();
+                                                        if ($result) {
+                                                          $jumlah = $result->fetch_assoc();
+                                                        }
+                                                      }
+                            
+                                                      $total = isset($jumlah['total']) ? $jumlah['total'] : 0;
                                                     ?>
 
                                                     <span class="nama-user" style="color: #d16010;">
@@ -269,7 +276,7 @@
                                                     <div class="badge badge-primary float-right">
                                                         Total Penjualan
                                                         <span class="font-small-3 nama-user">
-                                                            Rp. <?php echo number_format($jumlah['total'], 0, ',', '.') ?>
+                                                            Rp. <?php echo number_format($total, 0, ',', '.') ?>
                                                         </span>
                                                     </div>
                                                     <div class="table-responsive">
@@ -342,7 +349,7 @@
                                                                     <th colspan="3">TOTAL</th>
                                                                     <th>
                                                                         Rp.
-                                                                        <?php echo number_format($jumlah['total'], 2, ',', '.'); ?>
+                                                                        <?php echo number_format($total, 2, ',', '.'); ?>
                                                                     </th>
                                                                     <th colspan="3"></th>
                                                                 </tr>
