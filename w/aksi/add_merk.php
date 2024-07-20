@@ -24,7 +24,7 @@ if(isset($_POST['add_merk'])){
 	}
 
 
-	$query = "INSERT INTO tabel_merk_barang values('','$nama')";
+	$query = "INSERT INTO tabel_merk_barang values(null,'$nama')";
 	$hasil=mysqli_query($koneksi,$query);
 	// echo $hasil;
 	if($query){
