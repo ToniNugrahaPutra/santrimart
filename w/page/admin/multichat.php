@@ -203,7 +203,7 @@ function convertDate($tgl)
                                                 <div class="mb-25"><?= convertDate($a['timesend']) ?></div>
                                                 <?php if ($a['total']) { ?>
                                                     <span
-                                                        class="badge badge-primary badge-pill float-right"><?= $a['total'] ?></span>
+                                                        class="badge badge-primary badge-pill float-right" id="total_active"><?= $a['total'] ?></span>
                                                 <?php } ?>
                                             </div>
                                         </div>

@@ -25,7 +25,7 @@ if ($idSender != '' && $idReceiver != "") {
             $url = 'user';
             $chatps = $row['sender_id'] != $idSender ? "chat-left" : "";
             $foto = $row['foto'] ? "../img/$url/{$row['foto']}" : "../img/user/user.png";
-
+            
             if ($row['photo'] != null) {
                 $target = '../img/chat/' . $row['photo'];
                 $output .= '<div class="chat ' . $chatps . '">

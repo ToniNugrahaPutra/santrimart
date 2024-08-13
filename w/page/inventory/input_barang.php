@@ -179,7 +179,7 @@
               <!-- <button type="button" onclick="pilihVarian();"></button> -->
               <?php if ($_SESSION['akses'] == 'admin' || $_SESSION['akses'] == 'merchant') { ?>
                 <div class="row">
-                  <div class="col-md-4 col-12">
+                  <div class="col-md-12">
                     <div class="font-small-2 mt-1 mb-1">
                       Kategori <a href="#" class="badge badge-success" data-toggle="modal" data-target="#kategori-modal">
                         <i class="fas fa-plus-circle"></i>Tambah</a>
@@ -196,7 +196,7 @@
                       <?php } ?>
                     </select>
                   </div>
-                  <div class="col-md-4 col-12">
+                  <div class="col-md-12">
                     <div class="font-small-2 mt-1 mb-1">
                       Merk <a href="#" class="badge badge-success" data-toggle="modal" data-target="#merk">
                         <i class="fas fa-plus-circle"></i>Tambah</a>
@@ -212,7 +212,7 @@
                       <?php } ?>
                     </select>
                   </div>
-                  <div class="col-md-4 col-12">
+                  <div class="col-md-12 mb-1">
                     <div class="font-small-2 mt-1 mb-1">
                       Satuan Produk <a href="#" class="badge badge-success" data-toggle="modal" data-target="#satuan">
                         <i class="fas fa-plus-circle"></i>Tambah</a>
