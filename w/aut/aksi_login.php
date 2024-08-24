@@ -51,7 +51,7 @@
 		$_SESSION['kode_user']	= $data['kode_user'];
 		$_SESSION['id_user']	= $data['id_user'];
 		$_SESSION['email_user']	= $data['email_user'];
-		$_SESSION['kd_toko']	= $data['kd_toko'];
+		// $_SESSION['kd_toko']	= $data['kd_toko'];
 		$_SESSION['akses']		= $data['akses'];
 		if($data['akses'] == "kurir"){
 			// var_dump($id); die();
@@ -69,7 +69,6 @@
 
 		if (isset($data)) {
 			if ($data['akses'] == 'kasir') {
-				
 				echo '<script>
 				setTimeout(function() {
 					Swal.fire({

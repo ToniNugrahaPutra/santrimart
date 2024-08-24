@@ -1,4 +1,8 @@
 <?php include "../inc/koneksi.php";
+session_start();
+if (!isset($_SESSION['kd_toko'])) {
+  header('location:../aut/login_toko.php');
+} 
 $a = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM `tabel_toko` WHERE `kd_toko` = '123' LIMIT 1"));
 $background     = $a['background'];
 $headerfooter   = $a['headerfooter'];
@@ -9,27 +13,6 @@ $toko           = $a['nm_toko'];
 
 ?>
 
-<?php 
-//start session
-session_start();
-require_once '../inc/config.php';
-
-if (isset($_GET['code'])) {
-   $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-   $client->setAccessToken($token);
-
-   // getting user profile
-   $gauth = new Google_Service_Oauth2($client);
-   $google_info = $gauth->userinfo->get();
-   
-   $_SESSION['info'] = [
-      'name' => $google_info->name, 
-      'email' => $google_info->email, 
-      'picture' => $google_info->picture
-   ];
-   header('Location: /w/aut/google-login/login_google.php');
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -123,7 +106,7 @@ if (isset($_GET['code'])) {
 
                             <div class="text-center">                                 
                                 <div class="btn-group">     
-                                    <a  class="btn btn-outline-primary round float-left btn-inline" onclick="daftar_user()">Register</a>
+                                    <a  class="btn btn-outline-primary round float-left btn-inline" onclick="logout()">Logout</a>
                                     <button type="submit" name="button_login" class="login100-form-btn btn round gradient-light-primary float-right btn-inline">Login</button>
                                 </div>
                             </div>    
@@ -133,17 +116,6 @@ if (isset($_GET['code'])) {
             </div>
          </div>
         <div class="login-footer text-center">
-                                            
-        <div class="divider">
-           <div class="divider-text">OR</div>
-        </div>
-                                            
-        <div class="footer-btn d-inline">
-           
-                            <a href="<?= $client->createAuthUrl()?>" type="button" class="btn btn-danger btn-lg btn-block">
-                                <i class="fa fa-google"></i> &nbsp;
-                                Masuk dengan Google
-                            </a>
         </div>
                                             
        <div class="divider">
@@ -186,8 +158,8 @@ if (isset($_GET['code'])) {
 
 <script type="text/javascript">
     
-    function daftar_user() {
-        window.location = "daftar.php";
+    function logout() {
+        window.location = "logout.php";
     }
 
 </script>
