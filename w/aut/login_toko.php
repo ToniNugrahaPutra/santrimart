@@ -85,17 +85,12 @@ $toko = $a['nm_toko'];
                           <fieldset class="form-label-group form-group position-relative has-icon-left">
                             <select name="kd_toko" class="form-control" id="kd_toko">
                               <?php
-                              // Melakukan query untuk mendapatkan semua kd_toko 
                               $query = mysqli_query($koneksi, "SELECT kd_toko FROM tabel_toko ");
-                              // Melakukan pengecekan apakah query berhasil dieksekusi
                               if (mysqli_num_rows($query) > 0) {
-                                // Looping setiap data yang didapatkan dari query
                                 while ($row = mysqli_fetch_assoc($query)) {
-                                  // Menampilkan setiap kd_toko dalam <option>
                                   echo '<option value="' . $row['kd_toko'] . '">' . $row['kd_toko'] . '</option>';
                                 }
                               } else {
-                                // Jika tidak ada data, beri informasi bahwa data tidak ditemukan
                                 echo '<option value="">Toko tidak ditemukan</option>';
                               }
                               ?>
