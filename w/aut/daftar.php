@@ -6,28 +6,6 @@ $logo		 	= $a['logo'];
 $toko		 	= $a['nm_toko'];
 ?>
 
-<?php 
-//start session
-session_start();
-require_once '../inc/config.php';
-
-if (isset($_GET['code'])) {
-    $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-    $client->setAccessToken($token);
-
-    // getting user profile
-    $gauth = new Google_Service_Oauth2($client);
-    $google_info = $gauth->userinfo->get();
-
-    $_SESSION['info'] = [
-        'name' => $google_info->name, 
-        'email' => $google_info->email, 
-        'picture' => $google_info->picture
-    ];
-    // header('Location: /google-login');
-    header('Location: /w/aut/google-login/login_google.php');
-}
-?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
@@ -131,7 +109,7 @@ if (isset($_GET['code'])) {
       box-shadow: none;
     }
 
-    .btn-info: hover {
+    .btn-info:hover {
         border-color: #01b1B5 !important;
         background-color: #00CFE8 !important;
         color: #FFFFFF;
@@ -230,7 +208,6 @@ if (isset($_GET['code'])) {
                                    </li>
                                  </ul>
                               </div>
-                              
                               <div class="tab-content">
                                  <div role="tabpanel" class="tab-pane fade show in active" id="member">
                                     <div class="card-body p-2">
