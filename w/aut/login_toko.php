@@ -1,5 +1,5 @@
 <?php include "../inc/koneksi.php";
-$a = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM `tabel_toko` WHERE `kd_toko` = '123' LIMIT 1"));
+$a = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM `tabel_toko` WHERE `kd_toko` = '1_ORI' LIMIT 1"));
 $background = $a['background'];
 $headerfooter = $a['headerfooter'];
 $tombol = $a['tombol'];
