@@ -78,7 +78,7 @@
                 $executeSat = mysqli_query($koneksi, $satQuery);
                 while ($user = mysqli_fetch_array($executeSat)) {
                     ?>
-                    <?php if ($_SESSION['akses'] == 'admin' || $_SESSION['akses'] == 'kasir') { ?>
+                    <?php if ($_SESSION['akses'] == 'bengkel' || $_SESSION['akses'] == 'jasa') { ?>
                         <div class="col-xl-3 col-md-4 col-sm-6 col-6">
                             <a href="index.php?menu=ipos2" class="text-dark s">
                                 <div class="card text-center">
@@ -187,24 +187,25 @@
                 $jml = 0;
                 while ($jml = mysqli_fetch_array($executeSat)) {
                     ?>
-                    <div class="col-xl-3 col-md-4 col-sm-6 col-6">
-
-                        <a href="index.php?menu=balance" class="text-dark s">
-                            <div class="card text-center">
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <div class="avatar p-50 m-0 mb-1" style="background:<?php echo $tombol; ?>">
-                                            <div class="avatar-content">
-                                                <i class="fas fa-balance-scale font-medium-5"></i>
+                    <?php if ($_SESSION['akses'] == 'admin' || $_SESSION['akses'] == 'gudang') { ?>
+                        <div class="col-xl-3 col-md-4 col-sm-6 col-6">
+                            <a href="index.php?menu=balance" class="text-dark s">
+                                <div class="card text-center">
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <div class="avatar p-50 m-0 mb-1" style="background:<?php echo $tombol; ?>">
+                                                <div class="avatar-content">
+                                                    <i class="fas fa-balance-scale font-medium-5"></i>
+                                                </div>
                                             </div>
+                                            <h2 class="text-bold-700"><?= $jml['jml']; ?></h2>
+                                            <p class="mb-0 line-ellipsis">LAPORAN LABA</p>
                                         </div>
-                                        <h2 class="text-bold-700"><?= $jml['jml']; ?></h2>
-                                        <p class="mb-0 line-ellipsis">LAPORAN LABA</p>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    <?php } ?>
 
                 <?php } ?>
 
@@ -215,25 +216,25 @@
                 $jml = 0;
                 while ($jml = mysqli_fetch_array($executeSat)) {
                     ?>
-
-                    <div class="col-xl-3 col-md-4 col-sm-6 col-6">
-                        <a href="index.php?menu=stock" class="text-dark s">
-                            <div class="card text-center">
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <div class="avatar p-50 m-0 mb-1" style="background:<?php echo $tombol; ?>">
-                                            <div class="avatar-content">
-                                                <i class="fas fa-clipboard-list font-medium-5"></i>
+                    <?php if ($_SESSION['akses'] == 'admin' || $_SESSION['akses'] == 'gudang') { ?>
+                        <div class="col-xl-3 col-md-4 col-sm-6 col-6">
+                            <a href="index.php?menu=stock" class="text-dark s">
+                                <div class="card text-center">
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <div class="avatar p-50 m-0 mb-1" style="background:<?php echo $tombol; ?>">
+                                                <div class="avatar-content">
+                                                    <i class="fas fa-clipboard-list font-medium-5"></i>
+                                                </div>
                                             </div>
+                                            <h2 class="text-bold-700"><?= $jml['jml']; ?></h2>
+                                            <p class="mb-0 line-ellipsis">LAPORAN STOCK</p>
                                         </div>
-                                        <h2 class="text-bold-700"><?= $jml['jml']; ?></h2>
-                                        <p class="mb-0 line-ellipsis">LAPORAN STOCK</p>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-
+                            </a>
+                        </div>
+                    <?php } ?>
                 <?php } ?>
 
 

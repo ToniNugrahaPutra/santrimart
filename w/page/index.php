@@ -71,7 +71,7 @@ if ($_SESSION['akses'] == 'adminx') {
 
     </div>
     <?php
-
+    // var_dump($_SESSION['akses']);
     if ($_SESSION['akses'] == 'kepala_toko') {
 
       if (isset($_GET['menu'])) {
@@ -80,23 +80,23 @@ if ($_SESSION['akses'] == 'adminx') {
 
         switch ($menu) {
           case ('home');
-            include ('admin/home_kepala_toko.php');
+            include('admin/home_kepala_toko.php');
             break;
 
           case ('account');
-            include ('account.php');
+            include('account.php');
             break;
 
           case ('ipos2');
-            include ('admin/ipos2.php');
+            include('admin/ipos2.php');
             break;
 
           case ('ipos');
-            include ('admin/ipos.php');
+            include('admin/ipos.php');
             break;
 
           case ('mchat');
-            include ('admin/multichat.php');
+            include('admin/multichat.php');
             break;
 
           // case ('wholesale');
@@ -182,15 +182,15 @@ if ($_SESSION['akses'] == 'adminx') {
           //   break;
     
           case ('sales');
-            include ('admin/report_sales.php');
+            include('admin/report_sales.php');
             break;
 
           case ('balance');
-            include ('admin/report_balance.php');
+            include('admin/report_balance.php');
             break;
 
           case ('stock');
-            include ('admin/report_stock.php');
+            include('admin/report_stock.php');
             break;
 
           // case ('edit_product');
@@ -208,7 +208,7 @@ if ($_SESSION['akses'] == 'adminx') {
 
       if (isset($_GET['kode_produk'])) {
 
-        include ('admin/show_product.php');
+        include('admin/show_product.php');
 
       }
 
@@ -218,125 +218,125 @@ if ($_SESSION['akses'] == 'adminx') {
 
         switch ($menu) {
           case ('home');
-            include ('admin/home.php');
+            include('admin/home.php');
             break;
 
           case ('account');
-            include ('account.php');
+            include('account.php');
             break;
 
           case ('ipos');
-            include ('admin/ipos.php');
+            include('admin/ipos.php');
             break;
           case ('ipos2');
-            include ('admin/ipos2.php');
+            include('admin/ipos2.php');
             break;
 
           // case ('wholesale');
           //   include ('admin/wholesale.php');
           //   break;
           case ('mchat');
-            include ('admin/multichat.php');
+            include('admin/multichat.php');
             break;
 
           case ('product');
-            include ('admin/product.php');
+            include('admin/product.php');
             break;
 
           case ('member');
-            include ('admin/member.php');
+            include('admin/member.php');
             break;
 
           case ('merchant');
-            include ('admin/merchant.php');
+            include('admin/merchant.php');
             break;
 
           case ('kelola');
-            include ('admin/kelola_product.php');
+            include('admin/kelola_product.php');
             break;
 
           case ('order');
-            include ('admin/order-online.php');
+            include('admin/order-online.php');
             break;
 
           case ('ads');
-            include ('admin/ads.php');
+            include('admin/ads.php');
             break;
 
           case ('info');
-            include ('admin/info.php');
+            include('admin/info.php');
             break;
 
           case ('pembayaran');
-            include ('admin/pembayaran.php');
+            include('admin/pembayaran.php');
             break;
 
           case ('kurir');
-            include ('admin/kurir.php');
+            include('admin/kurir.php');
             break;
 
           case ('user');
-            include ('admin/user.php');
+            include('admin/user.php');
             break;
 
           case ('master_user');
-            include ('admin/master_user.php');
+            include('admin/master_user.php');
             break;
 
           case ('profile');
-            include ('admin/profile_toko.php');
+            include('admin/profile_toko.php');
             break;
 
           case ('keuangan');
-            include ('admin/keuangan.php');
+            include('admin/keuangan.php');
             break;
 
           case ('streaming');
-            include ('admin/streaming.php');
+            include('admin/streaming.php');
             break;
 
           case ('saldo');
-            include ('admin/saldo.php');
+            include('admin/saldo.php');
             break;
 
           case ('transfer');
-            include ('admin/transfer.php');
+            include('admin/transfer.php');
             break;
 
           case ('retur');
-            include ('admin/retur.php');
+            include('admin/retur.php');
             break;
 
           case ('nota');
-            include ('admin/nota.php');
+            include('admin/nota.php');
             break;
 
           case ('nota2');
-            include ('admin/nota2.php');
+            include('admin/nota2.php');
             break;
 
           case ('edit_retur');
-            include ('admin/show_retur.php');
+            include('admin/show_retur.php');
             break;
 
           case ('sales');
-            include ('admin/report_sales.php');
+            include('admin/report_sales.php');
             break;
 
           case ('balance');
-            include ('admin/report_balance.php');
+            include('admin/report_balance.php');
             break;
 
           case ('stock');
-            include ('admin/report_stock.php');
+            include('admin/report_stock.php');
             break;
 
           case ('edit_product');
-            include ('admin/edit_product.php');
+            include('admin/edit_product.php');
             break;
 
           case ('report_member');
-            include ('admin/list_report_member.php');
+            include('admin/list_report_member.php');
             break;
 
 
@@ -344,31 +344,31 @@ if ($_SESSION['akses'] == 'adminx') {
           // ============================ INVENTORY =============================
     
           case ('inventory');
-            include ('admin/home.php');
+            include('admin/home.php');
             break;
 
           case ('input_barang');
-            include ('inventory/input_barang.php');
+            include('inventory/input_barang.php');
             break;
 
           case ('supplier');
-            include ('inventory/daftar_suplier.php');
+            include('inventory/daftar_suplier.php');
             break;
 
           case ('laporan_stok');
-            include ('inventory/laporan_stok.php');
+            include('inventory/laporan_stok.php');
             break;
 
           case ('ipos_new');
-            include ('inventory/ipos.php');
+            include('inventory/ipos.php');
             break;
 
           case ('retur_jual');
-            include ('inventory/retur_penjualan.php');
+            include('inventory/retur_penjualan.php');
             break;
 
           case ('retur_beli');
-            include ('inventory/retur_pembelian.php');
+            include('inventory/retur_pembelian.php');
             break;
 
 
@@ -379,7 +379,7 @@ if ($_SESSION['akses'] == 'adminx') {
     } else if ($_SESSION['akses'] == 'gudang') {
       if (isset($_GET['kode_produk'])) {
 
-        include ('admin/show_product.php');
+        include('admin/show_product.php');
 
       }
       if (isset($_GET['menu'])) {
@@ -389,47 +389,47 @@ if ($_SESSION['akses'] == 'adminx') {
         switch ($menu) {
 
           case ('home');
-            include ('admin/home.php');
+            include('admin/home.php');
             break;
           case ('product');
-            include ('admin/product.php');
+            include('admin/product.php');
             break;
           case ('input_barang');
-            include ('inventory/input_barang.php');
+            include('inventory/input_barang.php');
             break;
 
           case ('supplier');
-            include ('inventory/daftar_suplier.php');
+            include('inventory/daftar_suplier.php');
             break;
 
           case ('mchat');
-            include ('admin/multichat.php');
+            include('admin/multichat.php');
             break;
           case ('sales');
-            include ('admin/report_sales.php');
+            include('admin/report_sales.php');
             break;
 
           case ('balance');
-            include ('admin/report_balance.php');
+            include('admin/report_balance.php');
             break;
 
           case ('stock');
-            include ('admin/report_stock.php');
+            include('admin/report_stock.php');
             break;
           // case ('laporan_stok');
           //   include ('inventory/laporan_stok.php');
           //   break;
     
           case ('laporan_stok');
-            include ('admin/report_stock.php');
+            include('admin/report_stock.php');
             break;
 
           case ('retur_beli');
-            include ('inventory/retur_pembelian.php');
+            include('inventory/retur_pembelian.php');
             break;
 
           case ('account');
-            include ('account.php');
+            include('account.php');
             break;
 
         }
@@ -443,18 +443,72 @@ if ($_SESSION['akses'] == 'adminx') {
         $menu = $_GET['menu'];
         switch ($menu) {
           case ('ipos');
-            include ('admin/ipos.php');
+            include('admin/ipos.php');
             break;
           case ('ipos2');
-            include ('admin/ipos2.php');
+            include('admin/ipos2.php');
             break;
 
           case ('nota');
-            include ('admin/nota.php');
+            include('admin/nota.php');
             break;
 
           case ('nota2');
-            include ('admin/nota2.php');
+            include('admin/nota2.php');
+            break;
+        }
+
+      }
+
+    } else if ($_SESSION['akses'] == 'bengkel') {
+      if (isset($_GET['menu'])) {
+        $menu = $_GET['menu'];
+        switch ($menu) {
+          case ('home');
+            include('admin/home.php');
+            break;
+          case ('ipos');
+            include('admin/ipos.php');
+            break;
+          case ('ipos2');
+            include('admin/ipos2.php');
+            break;
+
+          case ('nota');
+            include('admin/nota.php');
+            break;
+          case ('sales');
+            include('admin/report_sales.php');
+            break;
+          case ('nota2');
+            include('admin/nota2.php');
+            break;
+        }
+
+      }
+
+    } else if ($_SESSION['akses'] == 'jasa') {
+      if (isset($_GET['menu'])) {
+        $menu = $_GET['menu'];
+        switch ($menu) {
+          case ('home');
+            include('admin/home.php');
+            break;
+          case ('ipos');
+            include('admin/ipos.php');
+            break;
+          case ('ipos2');
+            include('admin/ipos2.php');
+            break;
+
+          case ('nota');
+            include('admin/nota.php');
+            break;
+          case ('sales');
+            include('admin/report_sales.php');
+            break;
+          case ('nota2');
+            include('admin/nota2.php');
             break;
         }
 
