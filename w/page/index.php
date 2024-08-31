@@ -87,6 +87,10 @@ if ($_SESSION['akses'] == 'adminx') {
             include ('account.php');
             break;
 
+          case ('ipos2');
+            include ('admin/ipos2.php');
+            break;
+
           case ('ipos');
             include ('admin/ipos.php');
             break;
@@ -223,6 +227,9 @@ if ($_SESSION['akses'] == 'adminx') {
 
           case ('ipos');
             include ('admin/ipos.php');
+            break;
+          case ('ipos2');
+            include ('admin/ipos2.php');
             break;
 
           // case ('wholesale');
@@ -437,6 +444,9 @@ if ($_SESSION['akses'] == 'adminx') {
         switch ($menu) {
           case ('ipos');
             include ('admin/ipos.php');
+            break;
+          case ('ipos2');
+            include ('admin/ipos2.php');
             break;
 
           case ('nota');

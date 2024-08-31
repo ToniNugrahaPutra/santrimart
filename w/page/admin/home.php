@@ -74,6 +74,31 @@
                     <?php } ?>
                 <?php } ?>
 
+                <?php $satQuery = "SELECT COUNT(id_user) as user FROM tabel_member";
+                $executeSat = mysqli_query($koneksi, $satQuery);
+                while ($user = mysqli_fetch_array($executeSat)) {
+                    ?>
+                    <?php if ($_SESSION['akses'] == 'admin' || $_SESSION['akses'] == 'kasir') { ?>
+                        <div class="col-xl-3 col-md-4 col-sm-6 col-6">
+                            <a href="index.php?menu=ipos2" class="text-dark s">
+                                <div class="card text-center">
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <div class="avatar p-50 m-0 mb-1" style="background:<?php echo $tombol; ?>">
+                                                <div class="avatar-content">
+                                                    <i class="fa-solid fa-cash-register font-medium-5"></i>
+                                                </div>
+                                            </div>
+                                            <h2 class="text-bold-700">BON</h2>
+                                            <p class="mb-0 line-ellipsis">BON</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    <?php } ?>
+                <?php } ?>
+
 
 
                 <?php $satQuery = "SELECT COUNT(id_user) as user FROM tabel_member WHERE akses = 'merchant'";
